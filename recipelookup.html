@@ -6,7 +6,7 @@
 </head>
 
 <body>
-	<form method='get'  onsubmit='request.send()'>
+	<form method='get'  onsubmit=''>
 	   Max Calories: <input type='text' name='calories' />
 	   <br/>
 	   Max Cooking time: <input type= 'text' name='minutes'/>
@@ -18,29 +18,18 @@
 		<option>Dessert</option>
 		</select>
 		<br />
-		<input  type = 'submit'  value= 'Submit'/>
+		<input  type = 'submit'  value= 'Submit' onclick="sendReq()"/>
 	</form>
 <script>
-var edamamURL = 'https://api.edamam.com/api/recipes/v2';
-var paramters = {
-                    q: "chicken",
-                    app_id: '523efb53',
-                    app_key: 'a72279eac472b5a8e9a9ce6f904aaea4',
-                };
 
-var request = new XMLHttpRequest();
+var query ="chicken steak"
+var requestURL = `https://api.edamam.com/search?q=${query}&app_id=523efb53&app_key=a72279eac472b5a8e9a9ce6f904aaea4`;
 
-request.open("GET", edamamURL + "?" + paramters, true);
-request.send();
-request.onload = function() 
-{
-    if (request.status == 200 ) 
-    {
-        //store json object in 'response'
-        var response = JSON.parse(request.responseText);
-        console.log(response);
-    }
-}
+
+fetch(requestURL)
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error(error));
 </script>
 </body>
 </html>
