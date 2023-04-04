@@ -6,7 +6,7 @@
 </head>
 
 <body>
-	<form method='get'  action='http://secretcheese.com/comp20/demo/processklsakdlaskdo.php'>
+	<form method='get'  onsubmit='request.send()'>
 	   Max Calories: <input type='text' name='calories' />
 	   <br/>
 	   Max Cooking time: <input type= 'text' name='minutes'/>
@@ -21,7 +21,26 @@
 		<input  type = 'submit'  value= 'Submit'/>
 	</form>
 <script>
+var edamamURL = 'https://api.edamam.com/api/recipes/v2';
+var paramters = {
+                    q: "chicken",
+                    app_id: '523efb53',
+                    app_key: 'a72279eac472b5a8e9a9ce6f904aaea4',
+                };
 
+var request = new XMLHttpRequest();
+
+request.open("GET", edamamURL + "?" + paramters, true);
+request.send();
+request.onload = function() 
+{
+    if (request.status == 200 ) 
+    {
+        //store json object in 'response'
+        var response = JSON.parse(request.responseText);
+        console.log(response);
+    }
+}
 </script>
 </body>
 </html>
