@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile | MyMeals</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        html, body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0px 50px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        p.instructions {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* header */
+        .prof-header {
+            display: flex;
+            justify-content: center; 
+            margin: 20px;  
+            background-color: blanchedalmond;      /* TODO get rid of */
+            align-items: center;    
+        }
+
+        #prof-header-img {
+            padding: 20px;
+        }
+
+        #prof-header-img img {
+            width: 100px;
+            border-radius: 100%;
+        }
+
+        #prof-header-text {
+            padding: 20px;
+        }
+
+        #prof-header-text h1 {
+            font-size: 40px;
+            margin: 0px;
+            margin-bottom: 10px;
+        }
+
+        /* user ingredients */
+        #prof-ingred {
+            display: flex;
+            justify-content: center; 
+            margin: 20px;  
+            background-color: blanchedalmond;      /* TODO get rid of */
+            align-items: center; 
+        }
+
+        #prof-ingred-input {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            height: 30px;
+        }
+
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            $(window).keydown(function(e){
+                if(e.key === "Enter") {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    
+    <!-- section: image + [username] + Profile -->
+    <section class="prof-header">
+        <div id="prof-header-img">
+            <img src="mymeals logos/logo.png" alt="profile image">
+        </div>
+
+        <div id="prof-header-text">
+            <!-- TODO : get username from login -->
+            <h1>Username's Profile</h1>
+            MyMeals Basic Plan
+        </div>
+    </section>
+
+    <!-- section, 2 cols: my ingredients -->
+    <br />
+    <h2>My Ingredients</h2>
+    <p class="instructions">Type your ingredients, hitting tab in between,
+                            to add them to your profile.</p>
+    
+    <section class="prof-ingred">
+        <div id="prof-ingred-enter">
+            <form action="post">
+                <input type="text" name="profile-ingredients" id="prof-ingred-input" />
+            </form>
+        </div>
+       
+        <div id="prof-ingred-display">
+
+        </div>
+    </section>
+
+    <!-- section, 2 cols: allergies/diet pref -->
+
+
+    <!-- section: favorited meals -->
+
+
+    <script>
+        const ingredInput = document.getElementById("prof-ingred-input");
+        ingredInput.addEventListener("keydown", function onEvent(e) {
+            // console.log(ingredInput);
+            // TODO clear input box content on enter + add to database?
+            if (e.key === "Enter") {
+                console.log("entered ingredient");
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
