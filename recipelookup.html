@@ -53,9 +53,6 @@
 	</form>
 <script>
 
-https://api.edamam.com/search?q=chicken&app_id=523efb53&app_key=a72279eac472b5a8e9a9ce6f904aaea4&mealType=Breakfast&diet=low-fat
-
-
 function sendReq()
 {
     //process additional search modifiers into strings and append request URL
@@ -78,16 +75,17 @@ function sendReq()
     var atLeastOneSelected = false;
 
     var ingredients = document.querySelectorAll('.ingredient');
+
     for (var i = 0; i < ingredients.length; i++) 
     {
-        if (ingredients[i].checked) 
+        if(ingredients[i].checked) 
         {
             atLeastOneSelected = true;
             query = query + " " + (ingredients[i].value);
         }
     }
 
-    if(atLeastOneSelected = false)
+    if(atLeastOneSelected === false)
     {
         alert("Please Select at Least 1 Ingredient!");
         return false;
