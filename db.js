@@ -34,6 +34,7 @@
 
 // main().catch(console.error);
 
+const { fstat } = require('fs');
 var http = require('http');
 var url = require('url');
 http.createServer(function (req, res) {
@@ -58,3 +59,36 @@ http.createServer(function (req, res) {
     }
     res.end();
 }).listen(8080);
+
+// var qs = require('querystring');
+// var body = '';
+// req.on('data', chunk => {body += chunk.toString();});
+// req.on('end', () => {
+//    console.log(qs.parse(body).x);
+//    res.end(); 
+// });
+
+
+
+// var readline = require('readline');
+// var fs = require('fs');
+
+// var myFile = readline.createInterface({
+//     input: fs.createReadStream('test.txt');
+// });
+
+// myFile.on('line', function(line) {
+//     console.log(line);
+// });
+
+
+
+
+// http.createServer(function (req, res) {
+//     file = "hello.html";
+//     fs.readFile(file, function(err, txt) {
+//         res.writeHead(200, {'Content-Type': 'text/html'});
+//         res.write(txt);
+//         res.end();
+//     });
+// }).listen(8080);
