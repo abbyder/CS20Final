@@ -51,6 +51,9 @@
         </table>
     <input type = 'submit'  value= 'Search' onclick="sendReq()"/>
 	</form>
+    <div id="recipes">
+
+    </div>
 <script>
 
 function sendReq()
@@ -95,7 +98,29 @@ function sendReq()
         var requestURL = `https://api.edamam.com/search?q=${query}&app_id=523efb53&app_key=a72279eac472b5a8e9a9ce6f904aaea4${additionalQueries}`;
         fetch(requestURL)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => 
+        {
+            //store entire response
+            var jsonData = data;
+            console.log(jsonData);
+
+            //isolate recipes
+            var hits = jsonData.hits;
+
+            var recipeSection = document.getElementById("recipes");
+
+            for (var i = 1; i < hits.length + 1; i++) 
+            {
+                //string
+                var recipeLabel = hits[i-1].recipe.label;
+                //li object
+                var listItem = document.createElement('li');
+
+                listItem.textContent = `Recipe ${i}: ${recipeLabel}`;
+                recipeSection.appendChild(listItem);
+                console.log(`Recipe ${i}: ${recipeLabel}`);
+            }
+        })  
         .catch(error => console.error(error));
     }
 }
