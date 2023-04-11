@@ -1,0 +1,237 @@
+<html>
+    <head>
+        <title>Home | MyMeals</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
+            body {
+                background-color: #f9d00f;
+            }
+            .content {
+                width: 615px;
+                margin: 0 auto;
+                padding-top: 100px;
+            }
+            .caption {
+                text-align: center;
+                color: #fff;
+                font-size: 25px
+            }
+            .buttons {
+                margin: 0 auto;
+                width: 300px
+            }
+            .btn {
+                width: 300px;
+                text-align: center;
+                height: 75px;
+                font-size: 30px;
+                border: none;
+                border-radius: 8px;
+                background-color: #fff;
+                color: #f9d00f;
+            }
+            .btn:hover {
+                background-color: #ffa4d0;
+                color: #fff
+            }
+            #signInEntry {
+                font-size: 20px;
+                margin: 0 auto;
+                width: 175px;
+                display: none;
+            }
+            #signUpEntry {
+                font-size: 20px;
+                margin: 0 auto;
+                width: 175px;
+                display: none
+            }
+            label {
+                color: #fff
+            }
+            .btn1 {
+                height:40px;
+            }
+            .btn1:hover {
+                height: 42px;
+            }
+            #arrowback {
+                height: 42px;
+                float: left;
+                width: 35%;
+                margin-right: 45px;
+                padding-left: 7px;
+                padding-top: 3px;
+            }
+            #arrowforward {
+                height: 42px;
+                float: left;
+                width: 35%;
+                padding-top: 3px;
+                margin-left: 0;
+                padding-left: 0
+            }
+            input[type="text"] {
+                border: none;
+                outline: none;
+                border-radius: 4px;
+                height: 30px;
+                margin-top: 5px;
+            }
+            input[type="password"] {
+                border: none;
+                outline: none;
+                border-radius: 4px;
+                height: 30px;
+                margin-top: 5px;
+            }
+            #signIn {
+                margin-bottom: 10px;
+            }
+            #signUp {
+                margin-bottom: 10px;
+            }
+            .error {
+                background-color: #ffffff;
+                color:#fa7171;
+                font-size: 17px;
+                height: 39px;
+                text-align: center;
+                display: inline-block;
+                margin: 0 auto;
+                width: 100%;
+                border-width: 3px;
+                border-style: solid;
+                border-color:#fa7171;
+                border-radius: 4px;
+                display: none;
+            }
+            #errorSignUpUser {
+                line-height: 39px;
+            }
+            #errorSignUpPW {
+                line-height: 39px;
+            }
+        </style>
+
+        <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+
+        <script>
+
+            function validate() {
+                if(document.getElementById("signInEntry").style.display == 'block') {
+                    username = document.getElementById("signInUser").value;
+                    password = document.getElementById("password").value;
+                    if(username == "" || password == "") {
+                        return false;
+                    } else {
+                        document.getElementsByName("signedIn")[0].value = true;
+                        return true;
+                    }
+                } else if(document.getElementById("signUpEntry").style.display == 'block') {
+                    username = document.getElementById("signUpUser").value;
+                    passwordOne = document.getElementById("passwordOne").value;
+                    passwordTwo = document.getElementById("passwordTwo").value;
+                    if(username == "" || passwordOne == "" || passwordTwo == "") {
+                        return false;
+                    }
+                    else if(passwordOne != passwordTwo) {
+                        document.getElementById("errorSignUpPW").style.display = 'inline-block';
+                        return false;
+                    } else {
+                        document.getElementsByName("signedIn")[1].value = true;
+                        return true;
+                    }
+                } else {
+                    return false;
+                }
+            }
+
+
+            window.onload=function() {
+                document.getElementById("signIn").onclick = function () {
+                    document.getElementById("buttons").style.display = 'none';
+                    document.getElementById("signInEntry").style.display = 'block';
+                }
+                document.getElementById("signUp").onclick = function () {
+                    document.getElementById("buttons").style.display = 'none';
+                    document.getElementById("signUpEntry").style.display = 'block';
+                }
+                document.getElementById("back1").onclick = function () {
+                    document.getElementById("buttons").style.display = 'block';
+                    document.getElementById("signInEntry").style.display = 'none';
+                    document.getElementById("errorSignIn").style.display = 'none';
+                    document.getElementById("signInUser").value = "";
+                    document.getElementById("password").value = "";
+                }
+                document.getElementById("back2").onclick = function () {
+                    document.getElementById("buttons").style.display = 'block';
+                    document.getElementById("signUpEntry").style.display = 'none';
+                    document.getElementById("errorSignUpPW").style.display = 'none';
+                    document.getElementById("errorSignUpPW").style.display = 'none';
+                    document.getElementById("signUpUser").value = "";
+                    document.getElementById("passwordOne").value = "";
+                    document.getElementById("passwordTwo").value = "";
+                }
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <div class="content">
+            <img src="mymeals logos\twitter_header_photo_1.png" id="logo" height="200"/>
+            <p class="caption">Get Recipe Ideas For Ingredients You Already Have At Home!</p>
+            <div class="buttons" id="buttons">
+                <input type='button' class="btn" id="signIn" value="Sign In"> <br /> <br />
+                <input type="button" class="btn" id="signUp" value="Sign Up">
+            </div>
+            <div id="signInEntry">
+                <form name="signIn" id="signIn" method="post" onsubmit='return validate()'>
+                    <label>User Name: </label> <br />
+                    <input type="text" id="signInUser" name="username" value="" maxlength="15"> <br /> <br />
+                    <label>Password: </label> <br />
+                    <input type="password" id="password" name="password" value="" maxlength="15">
+                    <input type="submit" id="submit-signIn" class="hidden" style="display:none"/>
+                    <input type='hidden' name='signedIn' value=false>
+                </form>
+                <div id="arrowback">
+                    <input type="image" class="btn1" id="back1" src="arrowleft.png">
+                </div>
+                <div id="arrowforward">
+                    <label for="submit-signIn" tabindex="0"><img class="btn1" id="go2" src="arrowright.png"></label>
+                </div>
+                <div id="errorSignIn" class="error">
+                    incorrect username and/or password
+                </div>
+            </div>
+            <div id="signUpEntry">
+                <form name="signUp" id="signUp" method="post" onsubmit='return validate()'>
+                    <label>User Name: </label> <br />
+                    <input type="text" id="signUpUser" name="username" value="" maxlength="15"> <br /> <br />
+                    <label>Password: </label> <br />
+                    <input type="password" id="passwordOne" name="password" value="" maxlength="15"> <br /> <br />
+                    <label>Confirm Password: </label> <br />
+                    <input type="password" id="passwordTwo" value="" maxlength="15">
+                    <input type="submit" id="submit-signUp" class="hidden" style="display:none"/>
+                    <input type='hidden' name='signedIn' value=false>
+                </form>
+                <div id="arrowback">
+                    <input type="image" class="btn1" id="back2" src="arrowleft.png">
+                </div>
+                <div id="arrowforward">
+                    <label for="submit-signUp" tabindex="0"><img class="btn1" id="go2" src="arrowright.png"></label>
+                </div>
+                <div id="errorSignUpUser" class="error">
+                    username is already in use
+                </div>
+                <div id="errorSignUpPW" class="error">
+                    passwords don't match
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
