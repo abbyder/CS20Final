@@ -16,6 +16,11 @@
             font-size: 30px;
         }
 
+        h3 {
+            text-align: center;
+            width: 300px;
+        }
+
         p.instructions {
             text-align: center;
             font-size: 18px;
@@ -93,8 +98,37 @@
             border-radius: 20px;
             background-color: coral; /* TODO change */
             width: fit-content;
-            height: 20px;
+            height: fit-content;
             margin: 10px;
+            text-align: center;
+        }
+
+        /* allergies/diet pref section */
+        .food-pref {
+            margin: 20px 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .food-box {
+            width: 140px;
+            padding: 5px;
+        }
+
+        .food-box label {
+            font-size: 16px;
+        }
+
+        input[type="checkbox"] {
+            height: 16px;
+            width: 16px;
+            margin-right: 10px;
+        }
+
+        #food-pref-allergies, #food-pref-diet {
+            display: flex;
+            flex-wrap: wrap;
+            width: 50%;
         }
 
     </style>
@@ -114,7 +148,7 @@
 
 <body>
     
-    <!-- section: image + [username] + Profile -->
+    <!-- section: header for user profile -->
     <section class="prof-header">
         <div id="prof-header-img">
             <img src="mymeals logos/logo.png" alt="profile image">
@@ -127,7 +161,7 @@
         </div>
     </section>
 
-    <!-- section, 2 cols: my ingredients -->
+    <!-- section: my ingredients -->
     <br />
     <h2>My Ingredients</h2>
     <p class="instructions">Type and enter your ingredients to add them to your profile!</p>
@@ -143,11 +177,23 @@
     </section>
 
     <!-- section, 2 cols: allergies/diet pref -->
-
+    <br /><br /><br />
+    <h2>My Allergies and Dietary Preferences</h2>
+    <p class="instructions">Select any allergies or dietary preferences you have.</p>
+   
+    <section class="food-pref">
+        <div id="food-pref-allergies">
+            <h3>Allergies</h3>
+        </div>
+        <div id="food-pref-diet">
+            <h3>Diet Preferences</h3>
+        </div>
+    </section>
 
     <!-- section: favorited meals -->
 
 
+    <!-- inputting user ingredients-->
     <script>
         const ingredInput = document.getElementById("prof-ingred-input");
         const ingredDisplay = document.getElementById("prof-ingred-display");
@@ -158,13 +204,97 @@
             // TODO eventually make enter add it to database, then have a 
             // function that gets user ingredients from databse + displays all
             // -- could also make it appear alphabetically?
-            if (e.key === "Enter") {
+            // TODO maybe validation -- outline if not found in database +
+            // include suggestions on how to fix it (misspelled, plural, 
+            // feedback that we should add it)
+            if (e.key === "Enter" && ingredInput.value != "") {
                 ingredDisplay.innerHTML += "<div class='user-ingred'>" + ingredInput.value.toLowerCase() + "</div>";
                 ingredInput.value = "";
             }
         });
+    </script>
+
+    <!-- create food preferences form -->
+    <script>
+        const allergyDisplay = document.getElementById("food-pref-allergies");
+        const dietDisplay = document.getElementById("food-pref-diet");
+
+        let allergies = [
+            "Peanuts", "Tree-Nut", "Dairy", "Eggs", "Gluten", "Fish", 
+            "Crustcean", "Shellfish", "Soy", "Sesame"   
+        ];
+
+        let dietType = [
+            "Vegetarian", "Vegan", "Pescatarian", "Pork-Free", "Kosher", "Alcohol-Free",
+            "Low Sugar", "Paleo", "Keto"
+        ];
+
+        function makeCheckBox(i, val, clName) {
+            let box = "<div class='food-box'>";
+            box += "<input type='checkbox' id='pref" + i + "' ";
+            box += "class=" + clName + " value='" + val + "'>";
+            box += "<label for='all'" + i + "'>" + val + "</label><br />";
+            box += "</div>";
+            return box;
+        }
+
+        // allergy list
+        for (let i = 0; i < allergies.length; i++) {
+            allergyDisplay.innerHTML += makeCheckBox(i, allergies[i], "allergy");
+        }
+
+        // diet pref list
+        for (let i = 0; i < dietType.length; i++) {
+            dietDisplay.innerHTML += makeCheckBox(i, dietType[i], "diets");
+        }
 
     </script>
+
+    <!-- process food preferences -->
+    <script>
+        const allergyBoxes = document.getElementsByClassName("allergy");
+        const dietBoxes = document.getElementsByClassName("diets");
+
+        for (let i = 0; i < allergyBoxes.length; i++ ) {
+            allergyBoxes[i].addEventListener("change", updateFoodPref);
+        }
+
+        for (let i = 0; i < dietBoxes.length; i++ ) {
+            dietBoxes[i].addEventListener("change", updateFoodPref);
+        }
+
+        function updateFoodPref() {
+            let allergyChecked = [];
+            let dietChecked = [];
+
+            for (let i = 0; i < allergyBoxes.length; i++ ) {
+                if (allergyBoxes[i].checked) {
+                    allergyChecked.push(allergyBoxes[i].value + "-Free");
+                }
+            }
+            for (let i = 0; i < dietBoxes.length; i++ ) {
+                if (dietBoxes[i].checked) {
+                    dietChecked.push(dietBoxes[i].value + "-Free");
+                }
+            }
+
+            // TODO delete
+            console.log(allergyChecked);
+            console.log(dietChecked);
+
+            // TODO
+            // have this add to the database-- maybe just overwrite it each
+            // because need to deal with allergies/diets being removed
+
+            // also need to display for a user their current allergies/prefs
+            // have it go through and add/remove from database then
+            // display from database directly
+        }
+        
+
+    </script>
+    
+    <br /><br /><br />
 
 </body>
 
