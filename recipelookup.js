@@ -6,6 +6,6 @@ const router=express.Router()
   
 // Handling login request
 router.get("/",(req,res,next)=>{
-    res.send("This is the login request")
+    res.sendFile("recipelookup.html", {root: __dirname })
 })
 module.exports=router

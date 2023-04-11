@@ -2,7 +2,8 @@ const express=require("express");
   
 // Importing all the routes
 const homeroute=require("./home.js");
-const loginroute=require("./test.js");
+const profileroute=require("./profile.js");
+const reciperoute=require("./recipelookup.js");
   
 // Creating express server
 const app=express();
@@ -16,5 +17,6 @@ app.use(bodyParser.urlencoded({
 
 // Handling routes request
 app.use("/", homeroute);
-app.use("/login", loginroute);
+app.use("/profile", profileroute);
+app.use("/recipelookup", reciperoute);
 app.listen(8080);
