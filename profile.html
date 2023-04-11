@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile | MyMeals</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        html, body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0px 50px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        p.instructions {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* header */
+        .prof-header {
+            display: flex;
+            justify-content: center; 
+            margin: 20px;  
+            background-color: blanchedalmond;      /* TODO get rid of */
+            align-items: center;    
+        }
+
+        #prof-header-img {
+            padding: 20px;
+        }
+
+        #prof-header-img img {
+            width: 100px;
+            border-radius: 100%;
+        }
+
+        #prof-header-text {
+            padding: 20px;
+        }
+
+        #prof-header-text h1 {
+            font-size: 40px;
+            margin: 0px;
+            margin-bottom: 10px;
+        }
+
+        /* user ingredients */
+        #prof-ingred {
+            /* display: flex; */
+            /* justify-content: center;  */
+            margin: 20px;  
+            background-color: blanchedalmond;      /* TODO get rid of */
+            align-items: center; 
+        }
+
+        #prof-ingred-entry {
+            display: flex;
+            justify-content: center;
+        }
+
+        #prof-ingred-input {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            width: 300px;
+            height: 35px;
+            padding-left: 15px;
+            text-align: center;
+        }
+
+        #ingred-display {
+            display: flex;
+            justify-content: center;
+        }
+
+        #prof-ingred-display {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            width: 700px;
+            align-items: flex-start;
+            height: fit-content;
+        }
+
+        .user-ingred {
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: coral; /* TODO change */
+            width: fit-content;
+            height: 20px;
+            margin: 10px;
+        }
+
+    </style>
+
+    <script>
+        // disable submission on enter so it can be used for inputting ingredients
+        $(document).ready(function() {
+            $(window).keydown(function(e){
+                if(e.key === "Enter") {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    
+    <!-- section: image + [username] + Profile -->
+    <section class="prof-header">
+        <div id="prof-header-img">
+            <img src="mymeals logos/logo.png" alt="profile image">
+        </div>
+
+        <div id="prof-header-text">
+            <!-- TODO : get username from login -->
+            <h1>Username's Profile</h1>
+            MyMeals Basic Plan
+        </div>
+    </section>
+
+    <!-- section, 2 cols: my ingredients -->
+    <br />
+    <h2>My Ingredients</h2>
+    <p class="instructions">Type and enter your ingredients to add them to your profile!</p>
+    
+    <section class="prof-ingred">
+        <div id="prof-ingred-entry">
+            <form action="post">
+                <input type="text" name="profile-ingredients" id="prof-ingred-input" />
+            </form>
+        </div>
+       
+        <div id="ingred-display"><div id="prof-ingred-display"></div></div>
+    </section>
+
+    <!-- section, 2 cols: allergies/diet pref -->
+
+
+    <!-- section: favorited meals -->
+
+
+    <script>
+        const ingredInput = document.getElementById("prof-ingred-input");
+        const ingredDisplay = document.getElementById("prof-ingred-display");
+        
+        // add ingredient to user info database
+        ingredInput.addEventListener("keydown", function onEvent(e) {
+            // TODO add item to database
+            // TODO eventually make enter add it to database, then have a 
+            // function that gets user ingredients from databse + displays all
+            // -- could also make it appear alphabetically?
+            if (e.key === "Enter") {
+                ingredDisplay.innerHTML += "<div class='user-ingred'>" + ingredInput.value.toLowerCase() + "</div>";
+                ingredInput.value = "";
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
