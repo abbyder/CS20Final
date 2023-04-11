@@ -107,7 +107,9 @@ function sendReq()
             //isolate recipes
             var hits = jsonData.hits;
 
+            //get recipeSection as an object and clear it in case of a re-search
             var recipeSection = document.getElementById("recipes");
+            recipeSection.textContent="";
 
             for (var i = 1; i < hits.length + 1; i++) 
             {
