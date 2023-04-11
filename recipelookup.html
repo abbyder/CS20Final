@@ -6,30 +6,102 @@
 </head>
 
 <body>
-	<form method='get'  onsubmit=''>
-	   Max Calories: <input type='text' name='calories' />
-	   <br/>
-	   Max Cooking time: <input type= 'text' name='minutes'/>
-		<br/>
-	   Course Type:  <select name='mealtype'>
-		<option>Breakfast</option>
-		<option>Lunch</option>
-		<option>Dinner</option>
-		<option>Dessert</option>
-		</select>
-		<br />
-		<input  type = 'submit'  value= 'Submit' onclick="sendReq()"/>
+	<form method='get' onsubmit="event.preventDefault()">
+        <table>
+            <tr>
+              <td>Select Ingredients:</td>
+              <td>
+                <input type="checkbox" class="ingredient" value="chicken">
+                <label for="ingredient1">Chicken</label><br>
+                <input type="checkbox" class="ingredient" value="steak">
+                <label for="ingredient2">Steak</label><br>
+
+              </td>
+            </tr>
+            <tr>
+                <td>Max Cooking time (minutes):</td>
+                <td><input type='text' name='minutes'/></td>
+            </tr>
+            <tr>
+                <td>Course Type:</td>
+                <td>
+                    <select name='mealtype' id='mealtype'>
+                    <option>All</option>
+                    <option>Breakfast</option>
+                    <option>Lunch</option>
+                    <option>Dinner</option>
+                    <option>Dessert</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Dietary Options:</td>
+                <td>
+                    <select name='diet' id='diet'>
+                    <option>none</option>
+                    <option>balanced</option>
+                    <option>high-fiber</option>
+                    <option>high-protein</option>
+                    <option>low-carb</option>
+                    <option>low-fat</option>
+                    <option>low-sodium</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    <input type = 'submit'  value= 'Search' onclick="sendReq()"/>
 	</form>
 <script>
 
-var query ="chicken steak"
-var requestURL = `https://api.edamam.com/search?q=${query}&app_id=523efb53&app_key=a72279eac472b5a8e9a9ce6f904aaea4`;
+https://api.edamam.com/search?q=chicken&app_id=523efb53&app_key=a72279eac472b5a8e9a9ce6f904aaea4&mealType=Breakfast&diet=low-fat
 
 
-fetch(requestURL)
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error(error));
+function sendReq()
+{
+    //process additional search modifiers into strings and append request URL
+    var additionalQueries = "";
+
+    var mealtype = document.getElementById('mealtype').value;
+    if(mealtype != 'All')
+    {
+        additionalQueries = additionalQueries + "&mealType=" + mealtype;
+    }
+
+	var diet = document.getElementById('diet').value;
+    if(diet != 'none')
+    {
+        additionalQueries = additionalQueries + "&diet=" + diet;
+    }
+
+    //process ingredients into string
+    var query = "";
+    var atLeastOneSelected = false;
+
+    var ingredients = document.querySelectorAll('.ingredient');
+    for (var i = 0; i < ingredients.length; i++) 
+    {
+        if (ingredients[i].checked) 
+        {
+            atLeastOneSelected = true;
+            query = query + " " + (ingredients[i].value);
+        }
+    }
+
+    if(atLeastOneSelected = false)
+    {
+        alert("Please Select at Least 1 Ingredient!");
+        
+    }
+    else
+    {
+        var requestURL = `https://api.edamam.com/search?q=${query}&app_id=523efb53&app_key=a72279eac472b5a8e9a9ce6f904aaea4${additionalQueries}`;
+        fetch(requestURL)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    }
+}
 </script>
+
 </body>
 </html>
