@@ -107,17 +107,40 @@ function sendReq()
             //isolate recipes
             var hits = jsonData.hits;
 
+            //get recipeSection as an object and clear it in case of a re-search
             var recipeSection = document.getElementById("recipes");
+            recipeSection.textContent="";
 
             for (var i = 1; i < hits.length + 1; i++) 
             {
-                //string
-                var recipeLabel = hits[i-1].recipe.label;
-                //li object
-                var listItem = document.createElement('li');
+                //create recipe variable
+                var currentRecipe = hits[i-1];
 
-                listItem.textContent = `Recipe ${i}: ${recipeLabel}`;
-                recipeSection.appendChild(listItem);
+                //get recipe title string
+                var recipeLabel = hits[i-1].recipe.label;
+
+                //create header object for storing recipe name
+                var recipeLabelObject = document.createElement('h1');
+                recipeLabelObject.textContent = `Recipe ${i}: ${recipeLabel}`;
+
+                //create div object for storing entire recipe and add header
+                var recipeListItem = document.createElement('div');
+                recipeListItem.appendChild(recipeLabelObject);
+
+                //create list object for storing ingredients, then add to div
+                var ingredientList = document.createElement('ul');
+                var peep = currentRecipe.ingredients;
+                console.log(peep.length);
+                for (var j = 0; j < currentRecipe.ingredients.length; j++) 
+                {
+                    var ingredient = document.createElement('li');
+                    ingredient.textContent = currentRecipe.ingredients[j].text;
+                    ingredientsList.appendChild(ingredient);
+                }
+                recipeListItem.appendChild(ingredientList);
+
+                //add entire recipe item to div
+                recipeSection.appendChild(recipeListItem);
                 console.log(`Recipe ${i}: ${recipeLabel}`);
             }
         })  
