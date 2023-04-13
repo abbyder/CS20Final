@@ -12,6 +12,7 @@ async function main(usn, pswd) {
 
         const database = client.db("user_info");
         const user = database.collection("users");
+        // check here if user already exists.
         // create a document to insert
         const doc = {
             username: usn,
