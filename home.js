@@ -6,6 +6,7 @@ async function main(usn, pswd) {
     var MongoClient = require('mongodb').MongoClient;
     var uri = "mongodb+srv://erickim:123@cluster0.wzucucu.mongodb.net/?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
+    //{useUnifiedTopology: true} ??? ^
 
     try {
         await client.connect();
