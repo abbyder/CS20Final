@@ -14,15 +14,21 @@ async function main(usn, pswd) {
         const database = client.db("user_info");
         const user = database.collection("users");
         // check here if user already exists.
-        // create a document to insert
-        const doc = {
-            username: usn,
-            password: pswd,
-            ingredients: ["ingred", "ingred"],
-            filters: ["filt", "filt"],
+        const query = {$and: [{ username: usn },{ password: pswd }]};
+        // print a message if no documents were found
+        if ((await user.countDocuments(query)) === 0) {
+            // console.log("User not registered");
+            return false;
         }
-        const result = await user.insertOne(doc);
-    
+        // create a document to insert
+        // const doc = {
+        //     username: usn,
+        //     password: pswd,
+        //     ingredients: ["ingred", "ingred"],
+        //     filters: ["filt", "filt"],
+        // }
+        // const result = await user.insertOne(doc);
+        return true;
     } catch (e) {
         console.error(e);
     } finally {
@@ -37,11 +43,17 @@ router.get("/",(req,res,next)=>{
 
 router.post('/', function(request, response, next){
     //database stuff
-    main(request.body['username'], request.body['password']).catch(console.error);
-
+    var ret = main(request.body['username'], request.body['password']).catch(console.error);
+    ret.then(x => { 
+        if(x) {
+            response.redirect("/profile")
+        } else {
+            // response.redirect("/signinfail");
+        }
+    });
     //reroute
 	// response.send(request.body);
-	response.redirect("/profile");
+	// response.redirect("/profile");
 
 });
 // Importing the router
