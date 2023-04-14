@@ -50,7 +50,8 @@ router.post('/', function(request, response, next){
             request.session.save();
             response.redirect("/profile")
         } else {
-            // response.redirect("/signinfail");
+            //change to some failure page
+            response.redirect("/recipelookup");
         }
     });
     //reroute
