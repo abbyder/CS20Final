@@ -18,7 +18,7 @@ async function main(usn, pswd) {
         // print a message if no documents were found
         if ((await user.countDocuments(query)) === 0) {
             // console.log("User not registered");
-            return false;
+            return null;
         }
         // create a document to insert
         // const doc = {
@@ -28,7 +28,7 @@ async function main(usn, pswd) {
         //     filters: ["filt", "filt"],
         // }
         // const result = await user.insertOne(doc);
-        return true;
+        return usn;
     } catch (e) {
         console.error(e);
     } finally {
@@ -45,7 +45,9 @@ router.post('/', function(request, response, next){
     //database stuff
     var ret = main(request.body['username'], request.body['password']).catch(console.error);
     ret.then(x => { 
-        if(x) {
+        if(x != null) {
+            request.session.user = x;
+            request.session.save();
             response.redirect("/profile")
         } else {
             // response.redirect("/signinfail");
@@ -56,5 +58,6 @@ router.post('/', function(request, response, next){
 	// response.redirect("/profile");
 
 });
+
 // Importing the router
 module.exports=router;

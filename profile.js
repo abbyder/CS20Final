@@ -34,7 +34,9 @@ async function main(usn, pswd) {
 
 // Handling login request
 router.get("/",(req,res,next)=>{
-    res.sendFile("profile.html", {root: __dirname });
+    const sessionuser = req.session.user;
+    res.send(sessionuser);
+    // res.sendFile("profile.html", {root: __dirname });
 })
 
 // router.post('/', function(request, response, next){
