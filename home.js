@@ -53,12 +53,19 @@ router.post('/', function(request, response, next){
             //change to some failure page
             response.redirect("/recipelookup");
         }
+        // app.get("/logout", (req, res) => {
+        //     req.session.destroy();
+        //     res.send("Your are logged out ");
+        // });
     });
     //reroute
 	// response.send(request.body);
 	// response.redirect("/profile");
 
 });
+
+//NEED TO ADD:
+//hidden field to home page forms to distinguish which form is being submitted.
 
 // Importing the router
 module.exports=router;

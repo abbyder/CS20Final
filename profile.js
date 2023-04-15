@@ -1,5 +1,8 @@
 // Importing the module
 const express=require("express")
+const cheerio = require("cheerio")
+const fs = require("fs");
+const session = require("express-session");
   
 // Creating express Router
 const router=express.Router()
@@ -35,8 +38,17 @@ async function main(usn, pswd) {
 // Handling login request
 router.get("/",(req,res,next)=>{
     const sessionuser = req.session.user;
-    res.send(sessionuser);
+    // res.send(sessionuser);
     // res.sendFile("profile.html", {root: __dirname });
+    // var userInput = req.body.userInput;
+    fs.readFile("profile.html", "utf8", function(err, data) {
+        if (err) throw err;
+
+        var $ = cheerio.load(data);
+
+        $(".usn").text(sessionuser + "'s Profile");
+        res.send($.html());
+    });
 })
 
 // router.post('/', function(request, response, next){
