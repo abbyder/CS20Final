@@ -168,7 +168,7 @@ function sendReq()
                 recipeListItem.appendChild(matchingIngredientStatement);
 
 
-                //console.log(ingredientLines);
+                //populate ingredientList object
                 for (var j = 0; j < ingredientLines.length; j++) 
                 {
                     var ingredient = document.createElement('li');
@@ -176,6 +176,13 @@ function sendReq()
                     ingredientList.appendChild(ingredient);
                 }
                 recipeListItem.appendChild(ingredientList);
+
+                //create table for storing ingredientlist and image
+                var imageAndIngredients = document.createElement('table');
+                //create img
+                var image = document.createElement('img')
+                image.src = currentRecipe.recipe.image;
+                
 
                 //store crafted recipe div in array with ingredient match count
                 recipesAndMatchCount.push(
