@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td>Max Cooking time (minutes):</td>
-                <td><input type='text' name='minutes'/></td>
+                <td><input type='number' name='minutes'/></td>
             </tr>
             <tr>
                 <td>Course Type:</td>
@@ -79,8 +79,16 @@ function sendReq()
 
     var ingredients = document.querySelectorAll('.ingredient');
 
+    //create + populate array of user's ingredients
+    //this currently gets the list from the form. Should be updated to grab
+    //list from the database in future.
+    var userIngredientList = [];
+
     for (var i = 0; i < ingredients.length; i++) 
     {
+        //populate user ingredient list
+        userIngredientList.push(ingredients[i].value);
+
         if(ingredients[i].checked) 
         {
             atLeastOneSelected = true;
@@ -129,13 +137,37 @@ function sendReq()
 
                 //create list object for storing ingredients, then add to div
                 var ingredientList = document.createElement('ul');
-                var peep = currentRecipe.ingredients;
-                console.log(peep.length);
-                for (var j = 0; j < currentRecipe.ingredients.length; j++) 
+
+                //ingredientLines variable, array of strings
+                var ingredientLines = currentRecipe.recipe.ingredientLines;
+
+                //create p object for stating matching ingredient #
+                var matchingIngredientStatement = document.createElement('p');
+
+                //check each user ingredient to see if it matches ingredientlines
+                var matchingIngredients = 0;
+                for (var k = 0; k < userIngredientList.length; k++)
+                {
+                    var userIngredient = userIngredientList[k].toLowerCase();
+                    for (var l = 0; l < ingredientLines.length; l++)
+                    {
+                        var recipeIngredient = ingredientLines[l].toLowerCase();
+                        if(recipeIngredient.indexOf(userIngredient) !== -1)
+                        {
+                            matchingIngredients++;
+                        }
+                    }
+                }
+                matchingIngredientStatement.textContent = "Matching Ingredients: " + matchingIngredients;
+                recipeListItem.appendChild(matchingIngredientStatement);
+
+
+                console.log(ingredientLines);
+                for (var j = 0; j < ingredientLines.length; j++) 
                 {
                     var ingredient = document.createElement('li');
-                    ingredient.textContent = currentRecipe.ingredients[j].text;
-                    ingredientsList.appendChild(ingredient);
+                    ingredient.textContent = ingredientLines[j];
+                    ingredientList.appendChild(ingredient);
                 }
                 recipeListItem.appendChild(ingredientList);
 
