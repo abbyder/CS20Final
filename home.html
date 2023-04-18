@@ -154,10 +154,14 @@
                 document.getElementById("signIn").onclick = function () {
                     document.getElementById("buttons").style.display = 'none';
                     document.getElementById("signInEntry").style.display = 'block';
+                    document.getElementById("signInUser").value = "";
+                    document.getElementById("password").value = "";
                 }
                 document.getElementById("signUp").onclick = function () {
                     document.getElementById("buttons").style.display = 'none';
                     document.getElementById("signUpEntry").style.display = 'block';
+                    document.getElementById("signInUser").value = "";
+                    document.getElementById("password").value = "";
                 }
                 document.getElementById("back1").onclick = function () {
                     document.getElementById("buttons").style.display = 'block';
