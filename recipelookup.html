@@ -15,6 +15,8 @@
                 <label for="ingredient1">Chicken</label><br>
                 <input type="checkbox" class="ingredient" value="steak">
                 <label for="ingredient2">Steak</label><br>
+                <input type="checkbox" class="ingredient" value="olive oil">
+                <label for="ingredient3">Olive Oil</label><br>
 
               </td>
             </tr>
@@ -119,6 +121,9 @@ function sendReq()
             var recipeSection = document.getElementById("recipes");
             recipeSection.textContent="";
 
+            //create array for storing recipe divs
+            var recipesAndMatchCount = [];
+
             for (var i = 1; i < hits.length + 1; i++) 
             {
                 //create recipe variable
@@ -155,6 +160,7 @@ function sendReq()
                         if(recipeIngredient.indexOf(userIngredient) !== -1)
                         {
                             matchingIngredients++;
+                            break;
                         }
                     }
                 }
@@ -162,7 +168,7 @@ function sendReq()
                 recipeListItem.appendChild(matchingIngredientStatement);
 
 
-                console.log(ingredientLines);
+                //console.log(ingredientLines);
                 for (var j = 0; j < ingredientLines.length; j++) 
                 {
                     var ingredient = document.createElement('li');
@@ -171,10 +177,27 @@ function sendReq()
                 }
                 recipeListItem.appendChild(ingredientList);
 
-                //add entire recipe item to div
-                recipeSection.appendChild(recipeListItem);
-                console.log(`Recipe ${i}: ${recipeLabel}`);
+                //store crafted recipe div in array with ingredient match count
+                recipesAndMatchCount.push(
+                {
+                    recipe: recipeListItem,
+                    matchCount: matchingIngredients
+                });
             }
+
+            //sort array of recipe divs by ingredient match count
+            recipesAndMatchCount.sort(function(a, b)
+            {
+                return b.matchCount - a.matchCount;
+            });
+
+            //add all recipes to page
+            for (var m = 0; m < recipesAndMatchCount.length; m++)
+            {
+                recipeSection.appendChild(recipesAndMatchCount[m].recipe);
+            }
+
+            
         })  
         .catch(error => console.error(error));
     }
