@@ -8,7 +8,7 @@
                 padding-top: 20px;
                 margin-left: 200px;
                 margin-right: 200px;
-                margin-top: 50px;
+                margin-top: 20px;
                 padding-left: 20px;
                 padding-bottom: 20px
             }
@@ -94,6 +94,36 @@
             td {
                 padding-top: 30px;
             }
+            .ingredients {
+                font-size: 20px;
+            }
+            h1 {
+                text-align: center;
+                color:#f9d00f;
+                font-size: 40px;
+                margin-top: 50px
+            }
+            #mealtype {
+                color:#ffa4d0;
+                height: 30px;
+                width: 100px;
+                font-size: 15px;
+                text-align: center
+            }
+            #diet {
+                color:#ffa4d0;
+                height: 30px;
+                width: 100px;
+                font-size: 15px;
+                text-align: center
+            }
+            input[type="number"] {
+                color:#ffa4d0;
+                height: 30px;
+                width: 100px;
+                font-size: 15px;
+                text-align: center
+            }
         </style>
 
         <script src="https://code.jquery.com/jquery-3.6.3.js"
@@ -115,6 +145,7 @@
 
     <body>
         <div class="content">
+            <h1>Find Your Custom Recipes</h1>
             <form class="form" name="form" method='get' onsubmit="event.preventDefault()">
                 <table>
                     <tr>
@@ -123,7 +154,7 @@
                             <h2><label class="num">1</label>Choose Your Main Ingredient</h2>
                         </div>
                       </td>
-                      <td>
+                      <td class="ingredients">
                         <input type="checkbox" class="ingredient" value="chicken">
                         <label for="ingredient1">Chicken</label><br>
                         <input type="checkbox" class="ingredient" value="steak">
@@ -137,7 +168,7 @@
                                 <h2><label class="num">2</label>Choose Your Max Cooking Time (minutes) &nbsp &nbsp &nbsp</h2>
                             </div>
                         </td>
-                        <td><input type='text' name='minutes'/></td>
+                        <td><input type='number' min="0" max="120" name='minutes'/></td>
                     </tr>
                     <tr>
                         <td>
