@@ -142,11 +142,6 @@
             margin-right: 10px;
         }
 
-        /* #food-pref-allergies, #food-pref-diet {
-            display: flex;
-            justify-content: center;
-        } */
-
         #allergies-content, #diet-content {
             display: flex;
             flex-wrap: wrap;
@@ -154,23 +149,46 @@
             width: 400px;
         }
 
-        /* #diet-content:last-child {
-            justify-content: start;
-        } */
+        /* form submit buttons */
+        #ingred-submit {
+            font-size: 16px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 5px 20px;
+            margin-left: 10px;
+        }
+
+        #pref-submit {
+            font-size: 16px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 5px 20px;
+            display: block;
+            margin-top: 25px;
+        }
+
+        #pref-submit-container {
+            display: flex;
+            justify-content: center;
+        }
 
     </style>
 
     <script>
         // disable submission on enter so it can be used for inputting ingredients
         $(document).ready(function() {
-            $(window).keydown(function(e){
+            $(window).keydown(function(e) {
                 if(e.key === "Enter") {
                     e.preventDefault();
                     return false;
                 }
             });
+            // TODO : maybe delete
+            $("#ingred-form").submit(function(e) {
+                e.preventDefault(); 
+            })
+
         });
     </script>
+
 </head>
 
 <body>
@@ -182,7 +200,6 @@
         </div>
 
         <div id="prof-header-text">
-            <!-- TODO : get username from login -->
             <h1 class="usn"></h1>
             MyMeals Basic Plan
         </div>
@@ -195,11 +212,12 @@
     
     <section class="prof-ingred">
         <div id="prof-ingred-entry">
-            <form action="post">
+            <form action="post" id="ingred-form">
+                <div id="ingred-hidden"></div>
                 <input type="text" name="profile-ingredients" id="prof-ingred-input" />
+                <input type="submit" value="Save Ingredients" id="ingred-submit" />
             </form>
-        </div>
-       
+        </div>       
         <div id="ingred-display"><div id="prof-ingred-display"></div></div>
     </section>
 
@@ -208,16 +226,21 @@
     <h2>My Allergies and Dietary Preferences</h2>
     <p class="instructions">Select any allergies or dietary preferences you have.</p>
    
-    <section class="food-pref">
-        <div id="food-pref-allergies">
-            <h3>Allergies</h3>
-            <div id="allergies-content"></div>
+    <form action="post" id="pref-form"></form>
+        <section class="food-pref">
+            <div id="food-pref-allergies">
+                <h3>Allergies</h3>
+                <div id="allergies-content"></div>
+            </div>
+            <div id="food-pref-diet">
+                <h3>Diet Preferences</h3>
+                <div id="diet-content"></div>
+            </div>
+        </section>
+        <div id="pref-submit-container">
+            <input type="submit" value="Save Preferences" id="pref-submit" />
         </div>
-        <div id="food-pref-diet">
-            <h3>Diet Preferences</h3>
-            <div id="diet-content"></div>
-        </div>
-    </section>
+    </form>
 
     <!-- section: favorited meals -->
     <br /><br />
@@ -226,7 +249,6 @@
     <section class="favorite-meals">
 
     </section>
-
 
     <!-- inputting user ingredients-->
     <script>
@@ -254,11 +276,16 @@
 
         // displays ingredients stored in userIngred array
         function updateIngredDisplay() {
+            const hiddenIngred = document.getElementById("ingred-hidden");
             let display = "";
+            hiddenIngred.innerHTML = "";
             for (let i = 0; i < userIngred.length; i++) {
                 display += "<div class='user-ingred'>" + "<button class='xBtn' onclick='deleteIngred(\"" 
                         + userIngred[i] + "\")'>X</button>"
                         + userIngred[i] + "</div>";
+                // add as a hidden field to process
+                hiddenIngred.innerHTML += "<input type='hidden' name='ingred" + i 
+                                        + "' value='" + userIngred[i] + "' />"
             }
             ingredDisplay.innerHTML = display;
         }
@@ -289,9 +316,9 @@
             "Red-Meat-Free", "Low Sugar", "Paleo", "Keto", 
         ];
 
-        function makeCheckBox(i, val, clName) {
+        function makeCheckBox(i, val, clName, tName) {
             let box = "<div class='food-box'>";
-            box += "<input type='checkbox' id='pref" + i + "' ";
+            box += "<input type='checkbox' id='" + tName + i + "' name='" + tName + i + "'";
             box += "class=" + clName + " value='" + val + "'>";
             box += "<label for='all'" + i + "'>" + val + "</label><br />";
             box += "</div>";
@@ -300,12 +327,12 @@
 
         // allergy list
         for (let i = 0; i < allergies.length; i++) {
-            allergyDisplay.innerHTML += makeCheckBox(i, allergies[i], "allergy");
+            allergyDisplay.innerHTML += makeCheckBox(i, allergies[i], "allergy", "all");
         }
 
         // diet pref list
         for (let i = 0; i < dietType.length; i++) {
-            dietDisplay.innerHTML += makeCheckBox(i, dietType[i], "diets");
+            dietDisplay.innerHTML += makeCheckBox(i, dietType[i], "diets", "diet");
         }
 
     </script>
