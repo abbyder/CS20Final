@@ -28,12 +28,15 @@ async function signin(usn, pswd) {
     }
 }
 
-async function signup(usn, pswd) {
+async function signup(usn, pswd, pswd2) {
     var MongoClient = require('mongodb').MongoClient;
     var uri = "mongodb+srv://erickim:123@cluster0.wzucucu.mongodb.net/?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
     //{useUnifiedTopology: true} ??? ^
-
+       
+    if(pswd != pswd2)  {
+        return "pswdfail";
+    }
     try {
         await client.connect();
 
@@ -87,19 +90,16 @@ router.post('/', function(request, response, next){
         });
     } else {
         //sign up
-        var ret = signup(request.body['username'], request.body['passwordOne']).catch(console.error);
+        var ret = signup(request.body['username'], request.body['passwordOne'], request.body['passwordTwo']).catch(console.error);
         ret.then(x => { 
-            if(x != null) {
+            if (x == "pswdfail") {
+                response.redirect("/pswdfail")
+            } else if (x != null) {
                 request.session.user = x;
                 request.session.save();
                 response.redirect("/profile")
             } else {
-                
-                if (request.body['passwordOne'] != request.body['passwordTwo']) {
-                    response.redirect("/pswdfail")
-                } else {
-                    response.redirect("/signupfail")
-                }
+                response.redirect("/signupfail")
             }
         });
     }

@@ -182,9 +182,9 @@
                 }
             });
             // TODO : maybe delete
-            $("#ingred-form").submit(function(e) {
-                e.preventDefault(); 
-            })
+            // $("#ingred-form").submit(function(e) {
+            //     e.preventDefault(); 
+            // })
 
         });
     </script>
@@ -212,9 +212,10 @@
     
     <section class="prof-ingred">
         <div id="prof-ingred-entry">
-            <form action="post" id="ingred-form">
+            <form method="post" id="ingred-form">
                 <div id="ingred-hidden"></div>
                 <input type="text" name="profile-ingredients" id="prof-ingred-input" />
+                <input type="text" id="count" name="count" hidden>
                 <input type="submit" value="Save Ingredients" id="ingred-submit" />
             </form>
         </div>       
@@ -226,7 +227,7 @@
     <h2>My Allergies and Dietary Preferences</h2>
     <p class="instructions">Select any allergies or dietary preferences you have.</p>
    
-    <form action="post" id="pref-form"></form>
+    <form method="post" id="pref-form"></form>
         <section class="food-pref">
             <div id="food-pref-allergies">
                 <h3>Allergies</h3>
@@ -287,6 +288,9 @@
                 hiddenIngred.innerHTML += "<input type='hidden' name='ingred" + i 
                                         + "' value='" + userIngred[i] + "' />"
             }
+            const count = document.getElementById("count");
+            count.value = userIngred.length;
+            console.log(count.value); 
             ingredDisplay.innerHTML = display;
         }
 

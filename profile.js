@@ -7,7 +7,7 @@ const session = require("express-session");
 // Creating express Router
 const router=express.Router()
   
-async function main(usn, pswd) {
+async function main(usn, data) {
     var MongoClient = require('mongodb').MongoClient;
     var uri = "mongodb+srv://erickim:123@cluster0.wzucucu.mongodb.net/?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
@@ -19,14 +19,15 @@ async function main(usn, pswd) {
         const database = client.db("user_info");
         const user = database.collection("users");
         // check here if user already exists.
-        // create a document to insert
-        const doc = {
-            username: usn,
-            password: pswd,
-            ingredients: ["ingred", "ingred"],
-            filters: ["filt", "filt"],
+        let ingredients = [];
+        for (i = 0; i < data['count']; i++) {
+            
         }
-        const result = await user.insertOne(doc);
+        // create a document to insert
+        const result = await user.findOneAndUpdate(
+            { "username" : usn },
+            { $set: {"ingredients" : ["filt41", "filt41"] }}
+        );
     
     } catch (e) {
         console.error(e);
@@ -51,14 +52,15 @@ router.get("/",(req,res,next)=>{
     });
 })
 
-// router.post('/', function(request, response, next){
-//     //database stuff
-//     main(request.body['username'], request.body['password']).catch(console.error);
+router.post('/', function(request, response, next){
+    console.log(request.body);
+    const sessionuser = request.session.user;
+    // //database stuff
+    main(sessionuser, request.body).catch(console.error);
 
-//     //reroute
-// 	// response.send(request.body);
-// 	response.redirect("/profile");
-
-// });
+    //reroute
+	// response.send(request.body);
+	response.redirect("/profile");
+});
 
 module.exports=router
