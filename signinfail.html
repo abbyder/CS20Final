@@ -38,7 +38,7 @@
                 font-size: 20px;
                 margin: 0 auto;
                 width: 175px;
-                display: none;
+                /* display: none; */
             }
             #signUpEntry {
                 font-size: 20px;
@@ -104,7 +104,7 @@
                 border-style: solid;
                 border-color:#fa7171;
                 border-radius: 4px;
-                display: none;
+                /* display: none; */
             }
             #errorSignUpUser {
                 background-color: #ffffff;
@@ -122,7 +122,6 @@
                 display: none;
             }
             #errorSignUpPW {
-                line-height: 39px;
                 background-color: #ffffff;
                 color:#fa7171;
                 font-size: 17px;
@@ -209,7 +208,7 @@
         <div class="content">
             <img src="twitter_header_photo_1.png" id="logo" height="200"/>
             <p class="caption">Get Recipe Ideas For Ingredients You Already Have At Home!</p>
-            <div class="buttons" id="buttons">
+            <div class="buttons" id="buttons" hidden>
                 <input type='button' class="btn" id="signIn" value="Sign In"> <br /> <br />
                 <input type="button" class="btn" id="signUp" value="Sign Up">
             </div>
@@ -229,7 +228,7 @@
                     <label for="submit-signIn" tabindex="0"><img class="btn1" id="go2" src="arrowright.png"></label>
                 </div>
                 <div id="errorSignIn">
-                    Incorrect username and/or password
+                    incorrect username and/or password
                 </div>
             </div>
             <div id="signUpEntry">
@@ -250,10 +249,10 @@
                     <label for="submit-signUp" tabindex="0"><img class="btn1" id="go2" src="arrowright.png"></label>
                 </div>
                 <div id="errorSignUpUser">
-                    Username is already in use
+                    username is already in use
                 </div>
                 <div id="errorSignUpPW">
-                    Passwords don't match
+                    passwords don't match
                 </div>
             </div>
         </div>

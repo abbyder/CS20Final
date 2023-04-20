@@ -63,7 +63,7 @@ async function signup(usn, pswd) {
 }
 // Handling request using router
 router.get("/",(req,res,next)=>{
-    res.sendFile("home.html", {root: __dirname });
+    res.sendFile("signupfail.html", {root: __dirname });
 });
 
 router.post('/', function(request, response, next){
@@ -94,11 +94,10 @@ router.post('/', function(request, response, next){
                 request.session.save();
                 response.redirect("/profile")
             } else {
-                response.redirect("/signupfail")
+                response.redirect("/signupfail");
             }
         });
     }
-
 });
 
 // Importing the router

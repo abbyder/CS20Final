@@ -6,6 +6,8 @@ const cookieParser = require("cookie-parser");
 const homeroute=require("./home.js");
 const profileroute=require("./profile.js");
 const reciperoute=require("./recipelookup.js");
+const signinfailroute=require("./signinfail.js");
+const signupfailroute=require("./signupfail.js");
   
 // Creating express server
 const app=express();
@@ -30,4 +32,6 @@ app.use(session({
 app.use("/", homeroute);
 app.use("/profile", profileroute);
 app.use("/recipelookup", reciperoute);
+app.use("/signinfail", signinfailroute);
+app.use("/signupfail", signupfailroute);
 app.listen(8080);
