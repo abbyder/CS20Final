@@ -193,7 +193,7 @@
                 document.getElementById("back2").onclick = function () {
                     document.getElementById("buttons").style.display = 'block';
                     document.getElementById("signUpEntry").style.display = 'none';
-                    document.getElementById("errorSignUpPW").style.display = 'none';
+                    document.getElementById("errorSignUpUser").style.display = 'none';
                     document.getElementById("errorSignUpPW").style.display = 'none';
                     document.getElementById("signUpUser").value = "";
                     document.getElementById("passwordOne").value = "";
@@ -213,13 +213,14 @@
                 <input type="button" class="btn" id="signUp" value="Sign Up">
             </div>
             <div id="signInEntry">
-                <form name="signIn" id="signIn" method="post" onsubmit='return validate()'>
+                <form name="signIn" id="signIn" method="post">
                     <label>User Name: </label> <br />
                     <input type="text" id="signInUser" name="username" value="" maxlength="15"> <br /> <br />
                     <label>Password: </label> <br />
                     <input type="password" id="password" name="password" value="" maxlength="15">
                     <input type="submit" id="submit-signIn" class="hidden" style="display:none"/>
                     <input type='hidden' name='signedIn' value=false>
+                    <input type='hidden' name='signUpForm' value=false>
                 </form>
                 <div id="arrowback">
                     <input type="image" class="btn1" id="back1" src="arrowleft.png">
@@ -228,11 +229,11 @@
                     <label for="submit-signIn" tabindex="0"><img class="btn1" id="go2" src="arrowright.png"></label>
                 </div>
                 <div id="errorSignIn">
-                    incorrect username and/or password
+                    Incorrect username and/or password
                 </div>
             </div>
             <div id="signUpEntry">
-                <form name="signUp" id="signUp" method="post" onsubmit='return validate()'>
+                <form name="signUp" id="signUp" method="post">
                     <label>User Name: </label> <br />
                     <input type="text" id="signUpUser" name="username" value="" maxlength="15"> <br /> <br />
                     <label>Password: </label> <br />
@@ -241,6 +242,7 @@
                     <input type="password" id="passwordTwo" value="" maxlength="15">
                     <input type="submit" id="submit-signUp" class="hidden" style="display:none"/>
                     <input type='hidden' name='signedIn' value=false>
+                    <input type='hidden' name='signUpForm' value=true>
                 </form>
                 <div id="arrowback">
                     <input type="image" class="btn1" id="back2" src="arrowleft.png">
@@ -249,10 +251,10 @@
                     <label for="submit-signUp" tabindex="0"><img class="btn1" id="go2" src="arrowright.png"></label>
                 </div>
                 <div id="errorSignUpUser">
-                    username is already in use
+                    Username is already in use
                 </div>
                 <div id="errorSignUpPW">
-                    passwords don't match
+                    Passwords don't match
                 </div>
             </div>
         </div>
