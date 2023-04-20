@@ -256,6 +256,10 @@
         const ingredInput = document.getElementById("prof-ingred-input");
         const ingredDisplay = document.getElementById("prof-ingred-display");
         let userIngred = [];
+        for (i = 0; i < ingredDisplay.children.length; i++) {
+            userIngred.push(ingredDisplay.children[i].childNodes[1].nodeValue);
+        }
+        updateIngredDisplay();
         
         // add ingredient to user info database
         ingredInput.addEventListener("keydown", function onEvent(e) {
@@ -290,7 +294,6 @@
             }
             const count = document.getElementById("count");
             count.value = userIngred.length;
-            console.log(count.value); 
             ingredDisplay.innerHTML = display;
         }
 
