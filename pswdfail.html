@@ -119,9 +119,10 @@
                 border-style: solid;
                 border-color:#fa7171;
                 border-radius: 4px;
-                /* display: none; */
+                display: none;
             }
             #errorSignUpPW {
+                line-height: 39px;
                 background-color: #ffffff;
                 color:#fa7171;
                 font-size: 17px;
@@ -134,7 +135,7 @@
                 border-style: solid;
                 border-color:#fa7171;
                 border-radius: 4px;
-                display: none;
+                /* display: none; */
             }
         </style>
 
@@ -198,15 +199,6 @@
                     document.getElementById("signUpUser").value = "";
                     document.getElementById("passwordOne").value = "";
                     document.getElementById("passwordTwo").value = "";
-                }
-                
-                document.getElementById("submit-signUp").onclick = function () {
-                    passwordOne = document.getElementById("passwordOne").value;
-                    passwordTwo = document.getElementById("passwordTwo").value;
-                    if(passwordOne != passwordTwo) {
-                        document.getElementById("errorSignUpPW").style.display = 'inline-block';
-                        document.getElementById("errorSignUpUser").style.display = 'none';
-                    }
                 }
             }
         </script>

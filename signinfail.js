@@ -87,14 +87,18 @@ router.post('/', function(request, response, next){
         });
     } else {
         //sign up
-        var ret = signup(request.body['username'], request.body['password']).catch(console.error);
+        var ret = signup(request.body['username'], request.body['passwordOne']).catch(console.error);
         ret.then(x => { 
             if(x != null) {
                 request.session.user = x;
                 request.session.save();
                 response.redirect("/profile")
             } else {
-                response.redirect("/signupfail")
+                if (request.body['passwordOne'] != request.body['passwordTwo']) {
+                    response.redirect("/pswdfail")
+                } else {
+                    response.redirect("/signupfail")
+                }
             }
         });
     }

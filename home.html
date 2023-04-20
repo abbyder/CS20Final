@@ -200,6 +200,13 @@
                     document.getElementById("passwordOne").value = "";
                     document.getElementById("passwordTwo").value = "";
                 }
+                // document.getElementById("submit-signUp").onclick = function () {
+                //     passwordOne = document.getElementById("passwordOne").value;
+                //     passwordTwo = document.getElementById("passwordTwo").value;
+                //     if(passwordOne != passwordTwo) {
+                //         document.getElementById("errorSignUpPW").style.display = 'inline-block';
+                //     }
+                // }
             }
         </script>
 
@@ -214,7 +221,7 @@
                 <input type="button" class="btn" id="signUp" value="Sign Up">
             </div>
             <div id="signInEntry">
-                <form name="signIn" id="signIn" method="post" onsubmit='return validate()'>
+                <form name="signIn" id="signIn" method="post">
                     <label>User Name: </label> <br />
                     <input type="text" id="signInUser" name="username" value="" maxlength="15"> <br /> <br />
                     <label>Password: </label> <br />
@@ -234,13 +241,13 @@
                 </div>
             </div>
             <div id="signUpEntry">
-                <form name="signUp" id="signUp" method="post" onsubmit='return validate()'>
+                <form name="signUp" id="signUp" method="post">
                     <label>User Name: </label> <br />
                     <input type="text" id="signUpUser" name="username" value="" maxlength="15"> <br /> <br />
                     <label>Password: </label> <br />
-                    <input type="password" id="passwordOne" name="password" value="" maxlength="15"> <br /> <br />
+                    <input type="password" id="passwordOne" name="passwordOne" value="" maxlength="15"> <br /> <br />
                     <label>Confirm Password: </label> <br />
-                    <input type="password" id="passwordTwo" value="" maxlength="15">
+                    <input type="password" id="passwordTwo" name="passwordTwo" value="" maxlength="15">
                     <input type="submit" id="submit-signUp" class="hidden" style="display:none"/>
                     <input type='hidden' name='signedIn' value=false>
                     <input type='hidden' name='signUpForm' value=true>
