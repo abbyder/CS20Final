@@ -52,7 +52,8 @@ async function signup(usn, pswd, pswd2) {
                 username: usn,
                 password: pswd,
                 ingredients: [],
-                filters: [],
+                allergies: [],
+                dietprefs: []
             }
             const result = await user.insertOne(doc);
             return usn;

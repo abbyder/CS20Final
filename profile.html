@@ -216,6 +216,7 @@
                 <div id="ingred-hidden"></div>
                 <input type="text" name="profile-ingredients" id="prof-ingred-input" />
                 <input type="text" id="count" name="count" hidden>
+                <input type='hidden' name='ingredform' value=true>
                 <input type="submit" value="Save Ingredients" id="ingred-submit" />
             </form>
         </div>       
@@ -227,7 +228,7 @@
     <h2>My Allergies and Dietary Preferences</h2>
     <p class="instructions">Select any allergies or dietary preferences you have.</p>
    
-    <form method="post" id="pref-form"></form>
+    <form method="post" id="pref-form">
         <section class="food-pref">
             <div id="food-pref-allergies">
                 <h3>Allergies</h3>
@@ -238,6 +239,7 @@
                 <div id="diet-content"></div>
             </div>
         </section>
+        <input type='hidden' name='ingredform' value=false>
         <div id="pref-submit-container">
             <input type="submit" value="Save Preferences" id="pref-submit" />
         </div>
@@ -310,37 +312,37 @@
 
     <!-- create food preferences form -->
     <script>
-        const allergyDisplay = document.getElementById("allergies-content");
-        const dietDisplay = document.getElementById("diet-content");
+        // const allergyDisplay = document.getElementById("allergies-content");
+        // const dietDisplay = document.getElementById("diet-content");
 
-        let allergies = [
-            "Peanuts", "Tree-Nut", "Dairy", "Eggs", "Gluten", "Fish", 
-            "Crustcean", "Shellfish", "Soy", "Sesame"   
-        ];
+        // let allergies = [
+        //     "Peanuts", "Tree-Nut", "Dairy", "Eggs", "Gluten", "Fish", 
+        //     "Crustcean", "Shellfish", "Soy", "Sesame"   
+        // ];
 
-        let dietType = [
-            "Vegetarian", "Vegan", "Pescatarian", "Pork-Free", "Kosher", "Alcohol-Free",
-            "Red-Meat-Free", "Low Sugar", "Paleo", "Keto", 
-        ];
+        // let dietType = [
+        //     "Vegetarian", "Vegan", "Pescatarian", "Pork-Free", "Kosher", "Alcohol-Free",
+        //     "Red-Meat-Free", "Low Sugar", "Paleo", "Keto", 
+        // ];
 
-        function makeCheckBox(i, val, clName, tName) {
-            let box = "<div class='food-box'>";
-            box += "<input type='checkbox' id='" + tName + i + "' name='" + tName + i + "'";
-            box += "class=" + clName + " value='" + val + "'>";
-            box += "<label for='all'" + i + "'>" + val + "</label><br />";
-            box += "</div>";
-            return box;
-        }
+        // function makeCheckBox(i, val, clName, tName) {
+        //     let box = "<div class='food-box'>";
+        //     box += "<input type='checkbox' id='" + tName + i + "' name='" + tName + i + "'";
+        //     box += "class=" + clName + " value='" + val + "'>";
+        //     box += "<label for='" + tName + i + "'>" + val + "</label><br />";
+        //     box += "</div>";
+        //     return box;
+        // }
 
-        // allergy list
-        for (let i = 0; i < allergies.length; i++) {
-            allergyDisplay.innerHTML += makeCheckBox(i, allergies[i], "allergy", "all");
-        }
+        // // allergy list
+        // for (let i = 0; i < allergies.length; i++) {
+        //     allergyDisplay.innerHTML += makeCheckBox(i, allergies[i], "allergy", "all");
+        // }
 
-        // diet pref list
-        for (let i = 0; i < dietType.length; i++) {
-            dietDisplay.innerHTML += makeCheckBox(i, dietType[i], "diets", "diet");
-        }
+        // // diet pref list
+        // for (let i = 0; i < dietType.length; i++) {
+        //     dietDisplay.innerHTML += makeCheckBox(i, dietType[i], "diets", "diet");
+        // }
 
     </script>
 
