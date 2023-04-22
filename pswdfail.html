@@ -44,7 +44,7 @@
                 font-size: 20px;
                 margin: 0 auto;
                 width: 175px;
-                display: none
+                /* display: none */
             }
             label {
                 color: #fff
@@ -135,7 +135,7 @@
                 border-style: solid;
                 border-color:#fa7171;
                 border-radius: 4px;
-                display: none;
+                /* display: none; */
             }
         </style>
 
@@ -200,13 +200,6 @@
                     document.getElementById("passwordOne").value = "";
                     document.getElementById("passwordTwo").value = "";
                 }
-                // document.getElementById("submit-signUp").onclick = function () {
-                //     passwordOne = document.getElementById("passwordOne").value;
-                //     passwordTwo = document.getElementById("passwordTwo").value;
-                //     if(passwordOne != passwordTwo) {
-                //         document.getElementById("errorSignUpPW").style.display = 'inline-block';
-                //     }
-                // }
             }
         </script>
 
@@ -216,7 +209,7 @@
         <div class="content">
             <img src="navlogo.png" id="logo" height="200"/>
             <p class="caption">Get Recipe Ideas For Ingredients You Already Have At Home!</p>
-            <div class="buttons" id="buttons">
+            <div class="buttons" id="buttons" hidden>
                 <input type='button' class="btn" id="signIn" value="Sign In"> <br /> <br />
                 <input type="button" class="btn" id="signUp" value="Sign Up">
             </div>

@@ -18,7 +18,7 @@
 
         h3 {
             text-align: center;
-            width: 300px;
+            /* width: 400px; */
         }
 
         p.instructions {
@@ -87,7 +87,7 @@
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 30px;
-            width: 700px;
+            width: 800px;
             align-items: flex-start;
             height: fit-content;
         }
@@ -101,6 +101,23 @@
             height: fit-content;
             margin: 10px;
             text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .xBtn {
+            width: 20px;
+            color: white;
+            background-color: coral;
+            border-radius: 100%;
+            margin-right: 10px;
+            border: 0px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .xBtn:hover {
+            background-color: white;
+            color: black;
         }
 
         /* allergies/diet pref section */
@@ -111,7 +128,7 @@
         }
 
         .food-box {
-            width: 140px;
+            width: 150px;
             padding: 5px;
         }
 
@@ -125,10 +142,32 @@
             margin-right: 10px;
         }
 
-        #food-pref-allergies, #food-pref-diet {
+        #allergies-content, #diet-content {
             display: flex;
             flex-wrap: wrap;
-            width: 50%;
+            justify-content: center;
+            width: 400px;
+        }
+
+        /* form submit buttons */
+        #ingred-submit {
+            font-size: 16px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 5px 20px;
+            margin-left: 10px;
+        }
+
+        #pref-submit {
+            font-size: 16px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 5px 20px;
+            display: block;
+            margin-top: 25px;
+        }
+
+        #pref-submit-container {
+            display: flex;
+            justify-content: center;
         }
 
     </style>
@@ -136,14 +175,20 @@
     <script>
         // disable submission on enter so it can be used for inputting ingredients
         $(document).ready(function() {
-            $(window).keydown(function(e){
+            $(window).keydown(function(e) {
                 if(e.key === "Enter") {
                     e.preventDefault();
                     return false;
                 }
             });
+            // TODO : maybe delete
+            // $("#ingred-form").submit(function(e) {
+            //     e.preventDefault(); 
+            // })
+
         });
     </script>
+
 </head>
 
 <body>
@@ -155,7 +200,6 @@
         </div>
 
         <div id="prof-header-text">
-            <!-- TODO : get username from login -->
             <h1 class="usn"></h1>
             MyMeals Basic Plan
         </div>
@@ -168,35 +212,56 @@
     
     <section class="prof-ingred">
         <div id="prof-ingred-entry">
-            <form action="post">
+            <form method="post" id="ingred-form">
+                <div id="ingred-hidden"></div>
                 <input type="text" name="profile-ingredients" id="prof-ingred-input" />
+                <input type="text" id="count" name="count" hidden>
+                <input type='hidden' name='ingredform' value=true>
+                <input type="submit" value="Save Ingredients" id="ingred-submit" />
             </form>
-        </div>
-       
+        </div>       
         <div id="ingred-display"><div id="prof-ingred-display"></div></div>
     </section>
 
     <!-- section, 2 cols: allergies/diet pref -->
-    <br /><br /><br />
+    <br /><br />
     <h2>My Allergies and Dietary Preferences</h2>
     <p class="instructions">Select any allergies or dietary preferences you have.</p>
    
-    <section class="food-pref">
-        <div id="food-pref-allergies">
-            <h3>Allergies</h3>
+    <form method="post" id="pref-form">
+        <section class="food-pref">
+            <div id="food-pref-allergies">
+                <h3>Allergies</h3>
+                <div id="allergies-content"></div>
+            </div>
+            <div id="food-pref-diet">
+                <h3>Diet Preferences</h3>
+                <div id="diet-content"></div>
+            </div>
+        </section>
+        <input type='hidden' name='ingredform' value=false>
+        <div id="pref-submit-container">
+            <input type="submit" value="Save Preferences" id="pref-submit" />
         </div>
-        <div id="food-pref-diet">
-            <h3>Diet Preferences</h3>
-        </div>
-    </section>
+    </form>
 
     <!-- section: favorited meals -->
+    <br /><br />
+    <h2>My Favorite Meals</h2>
+    <p class="instructions">Check out your favorited recipes!</p>
+    <section class="favorite-meals">
 
+    </section>
 
     <!-- inputting user ingredients-->
     <script>
         const ingredInput = document.getElementById("prof-ingred-input");
         const ingredDisplay = document.getElementById("prof-ingred-display");
+        let userIngred = [];
+        for (i = 0; i < ingredDisplay.children.length; i++) {
+            userIngred.push(ingredDisplay.children[i].childNodes[1].nodeValue);
+        }
+        updateIngredDisplay();
         
         // add ingredient to user info database
         ingredInput.addEventListener("keydown", function onEvent(e) {
@@ -208,45 +273,76 @@
             // include suggestions on how to fix it (misspelled, plural, 
             // feedback that we should add it)
             if (e.key === "Enter" && ingredInput.value != "") {
-                ingredDisplay.innerHTML += "<div class='user-ingred'>" + ingredInput.value.toLowerCase() + "</div>";
+                // ingredDisplay.innerHTML += "<div class='user-ingred'>" + "<button class='xBtn' onclick='deleteIngred()'>X</button>"
+                //         + ingredInput.value.toLowerCase() + "</div>";
+                userIngred.push(ingredInput.value.toLowerCase());
+                updateIngredDisplay();
                 ingredInput.value = "";
             }
         });
+
+        // displays ingredients stored in userIngred array
+        function updateIngredDisplay() {
+            const hiddenIngred = document.getElementById("ingred-hidden");
+            let display = "";
+            hiddenIngred.innerHTML = "";
+            for (let i = 0; i < userIngred.length; i++) {
+                display += "<div class='user-ingred'>" + "<button class='xBtn' onclick='deleteIngred(\"" 
+                        + userIngred[i] + "\")'>X</button>"
+                        + userIngred[i] + "</div>";
+                // add as a hidden field to process
+                hiddenIngred.innerHTML += "<input type='hidden' name='ingred" + i 
+                                        + "' value='" + userIngred[i] + "' />"
+            }
+            const count = document.getElementById("count");
+            count.value = userIngred.length;
+            ingredDisplay.innerHTML = display;
+        }
+
+        // deletes ingredient from display + list
+        function deleteIngred(x) {
+            let idx = userIngred.indexOf(x);
+            if (idx > -1) {
+                userIngred.splice(idx, 1);
+            }
+            updateIngredDisplay();
+        }
+
     </script>
 
     <!-- create food preferences form -->
     <script>
-        const allergyDisplay = document.getElementById("food-pref-allergies");
-        const dietDisplay = document.getElementById("food-pref-diet");
+        // const allergyDisplay = document.getElementById("allergies-content");
+        // const dietDisplay = document.getElementById("diet-content");
 
-        let allergies = [
-            "Peanuts", "Tree-Nut", "Dairy", "Eggs", "Gluten", "Fish", 
-            "Crustcean", "Shellfish", "Soy", "Sesame"   
-        ];
+        // let allergies = [
+        //     "Peanuts", "Tree-Nut", "Dairy", "Eggs", "Gluten", "Fish", 
+        //     "Crustcean", "Shellfish", "Soy", "Sesame"   
+        // ];
 
-        let dietType = [
-            "Vegetarian", "Vegan", "Pescatarian", "Pork-Free", "Kosher", "Alcohol-Free",
-            "Low Sugar", "Paleo", "Keto"
-        ];
+        // let dietType = [
+        //     "Vegetarian", "Vegan", "Pescatarian", "Pork-Free", "Kosher", "Alcohol-Free",
+        //     "Red-Meat-Free", "Low Sugar", "Paleo", "Keto", 
+        // ];
 
-        function makeCheckBox(i, val, clName) {
-            let box = "<div class='food-box'>";
-            box += "<input type='checkbox' id='pref" + i + "' ";
-            box += "class=" + clName + " value='" + val + "'>";
-            box += "<label for='all'" + i + "'>" + val + "</label><br />";
-            box += "</div>";
-            return box;
-        }
+        // function makeCheckBox(i, val, clName, tName) {
+        //     let box = "<div class='food-box'>";
+        //     box += "<input type='checkbox' id='" + tName + i + "' name='" + tName + i + "'";
+        //     box += "class=" + clName + " value='" + val + "'>";
+        //     box += "<label for='" + tName + i + "'>" + val + "</label><br />";
+        //     box += "</div>";
+        //     return box;
+        // }
 
-        // allergy list
-        for (let i = 0; i < allergies.length; i++) {
-            allergyDisplay.innerHTML += makeCheckBox(i, allergies[i], "allergy");
-        }
+        // // allergy list
+        // for (let i = 0; i < allergies.length; i++) {
+        //     allergyDisplay.innerHTML += makeCheckBox(i, allergies[i], "allergy", "all");
+        // }
 
-        // diet pref list
-        for (let i = 0; i < dietType.length; i++) {
-            dietDisplay.innerHTML += makeCheckBox(i, dietType[i], "diets");
-        }
+        // // diet pref list
+        // for (let i = 0; i < dietType.length; i++) {
+        //     dietDisplay.innerHTML += makeCheckBox(i, dietType[i], "diets", "diet");
+        // }
 
     </script>
 
@@ -274,7 +370,7 @@
             }
             for (let i = 0; i < dietBoxes.length; i++ ) {
                 if (dietBoxes[i].checked) {
-                    dietChecked.push(dietBoxes[i].value + "-Free");
+                    dietChecked.push(dietBoxes[i].value);
                 }
             }
 
@@ -289,6 +385,9 @@
             // also need to display for a user their current allergies/prefs
             // have it go through and add/remove from database then
             // display from database directly
+
+            // TODO
+            // have an onload something to pre-select ingredients + dietary preferences
         }
         
 
