@@ -4,7 +4,6 @@
     margin-left: 200px;
     margin-right: 200px;
     margin-top: 20px;
-    padding-left: 20px;
     padding-bottom: 20px
 }
 .collapse {
@@ -118,4 +117,7 @@ input[type="number"] {
     width: 100px;
     font-size: 15px;
     text-align: center
+}
+table {
+    margin: 0 auto
 }

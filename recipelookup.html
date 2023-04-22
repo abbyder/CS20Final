@@ -3,7 +3,21 @@
 <head>
 <meta charset="utf-8">
 <title>Recipe Form</title>
+<link rel = "stylesheet" type = "text/css" href = "recipeheader.css">
+<link rel = "stylesheet" type = "text/css" href = "recipestylesheet.css">
 </head>
+
+<script>
+
+    window.onload=function() {
+        document.getElementById("edit").onclick = function () {
+            document.getElementsByName("form")[0].style.display = "block";
+            document.getElementsByName("collapse")[0].style.display = "none";
+        }
+    }
+
+</script>
+
 <script>
 
 function populateForm()
@@ -49,47 +63,94 @@ function populateForm()
 }    
 </script>
 <body>
-	<form method='get' onsubmit="event.preventDefault()">
-        <table>
-            <tr id="userIngredientSection">
-              <td>Select Ingredients:</td>
+	
 
-            </tr>
-            <tr>
-                <td>Max Cooking time (minutes):</td>
-                <td><input type='number' name='minutes'/></td>
-            </tr>
-            <tr>
-                <td>Course Type:</td>
-                <td>
-                    <select name='mealtype' id='mealtype'>
-                    <option>All</option>
-                    <option>Breakfast</option>
-                    <option>Lunch</option>
-                    <option>Dinner</option>
-                    <option>Dessert</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Dietary Options:</td>
-                <td>
-                    <select name='diet' id='diet'>
-                    <option>none</option>
-                    <option>balanced</option>
-                    <option>high-fiber</option>
-                    <option>high-protein</option>
-                    <option>low-carb</option>
-                    <option>low-fat</option>
-                    <option>low-sodium</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-    <input type = 'submit'  value= 'Search' onclick="sendReq()"/>
-	</form>
-    <div id="recipes">
+    <div class="header">
+        <ul class="nav">
+            <li id="header"><img src="images\navlogo.png" height="70px" class="logo"></li>
+            <li id="header" class="right"><a  class="headerlink" href="file:///C:/Users/emily/OneDrive/Desktop/CS20%20Github/CS20Final/header.html">&nbsp; &nbsp;<img src="images\profile.png" height="50px" class="userPage"><text class="headertext">PROFILE</text></a></li>
+        </ul>
     </div>
+
+
+    <div class="content">
+        <h1>Find Your Custom Recipes</h1>
+        <form class="form" name="form" method='get' onsubmit="event.preventDefault()">
+            <table>
+                <tr>
+                  <td>
+                    <div class="title">
+                        <h2><label class="num">1</label>Choose Your Main Ingredient</h2>
+                    </div>
+                  </td>
+                  <td class="ingredients">
+                    <input type="checkbox" class="ingredient" value="chicken">
+                    <label for="ingredient1">Chicken</label><br>
+                    <input type="checkbox" class="ingredient" value="steak">
+                    <label for="ingredient2">Steak</label><br>
+    
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <h2><label class="num">2</label>Choose Your Max Cooking Time (minutes) &nbsp &nbsp &nbsp</h2>
+                        </div>
+                    </td>
+                    <td><input type='number' min="0" max="120" name='minutes'/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <h2><label class="num">3</label>Choose Your Course Type</h2>
+                        </div>
+                    </td>
+                    <td>
+                        <select name='mealtype' id='mealtype'>
+                        <option>All</option>
+                        <option>Breakfast</option>
+                        <option>Lunch</option>
+                        <option>Dinner</option>
+                        <option>Dessert</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <h2><label class="num">4</label>Choose Your Dietary Options</h2>
+                        </div>
+                    </td>
+                    <td>
+                        <select name='diet' id='diet'>
+                        <option>none</option>
+                        <option>balanced</option>
+                        <option>high-fiber</option>
+                        <option>high-protein</option>
+                        <option>low-carb</option>
+                        <option>low-fat</option>
+                        <option>low-sodium</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <div class="submitbtn">
+                <input type = 'button'  id="submit" value= 'Get Your Recipes' onclick="sendReq()"/>
+            </div>
+            <br />
+        </form>
+        <div class="collapse" name="collapse">
+            <div class="editbtn">
+                <input type="button" id="edit" value="Edit Your Search"/>
+            </div>
+        </div>
+    </div>
+    <div id="recipes">
+
+    </div>
+
+
 <script>
 
 populateForm();
@@ -151,6 +212,8 @@ function sendReq()
     }
     else
     {
+        document.getElementsByName("form")[0].style.display = "none";
+        document.getElementsByName("collapse")[0].style.display = "block";
         var requestURL = `https://api.edamam.com/search?q=${query}&app_id=523efb53&app_key=a72279eac472b5a8e9a9ce6f904aaea4${additionalQueries}`;
         fetch(requestURL)
         .then(response => response.json())
@@ -179,7 +242,7 @@ function sendReq()
                 var recipeLabel = hits[i-1].recipe.label;
 
                 //create header object for storing recipe name
-                var recipeLabelObject = document.createElement('h1');
+                var recipeLabelObject = document.createElement('h3');
                 recipeLabelObject.textContent = `Recipe ${i}: ${recipeLabel}`;
 
                 //create div object for storing entire recipe and add header
