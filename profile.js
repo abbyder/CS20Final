@@ -159,85 +159,93 @@ function makeCheckedBox(i, val, clName, tName) {
 // Handling login request
 router.get("/",(req,res,next)=>{
     const sessionuser = req.session.user;
-    // res.send(sessionuser);
-    // res.sendFile("profile.html", {root: __dirname });
-    // var userInput = req.body.userInput;
-    fs.readFile("profile.html", "utf8", function(err, data) {
-        if (err) throw err;
+    if (sessionuser == null) {
+        res.redirect("/");
+    } else {
+        // res.send(sessionuser);
+        // res.sendFile("profile.html", {root: __dirname });
+        // var userInput = req.body.userInput;
+        fs.readFile("profile.html", "utf8", function(err, data) {
+            if (err) throw err;
 
-        var $ = cheerio.load(data);
+            var $ = cheerio.load(data);
 
-        $(".usn").text(sessionuser + "'s Profile");
-        
-        var ingredients = getingred(sessionuser).catch(console.error);
-        ingredients.then(x => { 
-            for (i = 0; i < x.length; i++) {
-                $("#prof-ingred-display").append('<div class="user-ingred"><button class="xBtn" onclick="deleteIngred(&quot;2&quot;)">X</button>' + x[i] + '</div>');
-                $("#ingred-hidden").append('<input type="hidden" name="ingred0" value="' + x[i] + '">');
-            }
-            var allergies = getallergies(sessionuser).catch(console.error);
-            allergies.then(y => {
-                    let allergies = [
-                        "Peanuts", "Tree-Nut", "Dairy", "Eggs", "Gluten", "Fish", 
-                        "Crustcean", "Shellfish", "Soy", "Sesame"   
-                    ];
+            $(".usn").text(sessionuser + "'s Profile");
+            
+            var ingredients = getingred(sessionuser).catch(console.error);
+            ingredients.then(x => { 
+                for (i = 0; i < x.length; i++) {
+                    $("#prof-ingred-display").append('<div class="user-ingred"><button class="xBtn" onclick="deleteIngred(&quot;2&quot;)">X</button>' + x[i] + '</div>');
+                    $("#ingred-hidden").append('<input type="hidden" name="ingred0" value="' + x[i] + '">');
+                }
+                var allergies = getallergies(sessionuser).catch(console.error);
+                allergies.then(y => {
+                        let allergies = [
+                            "Peanuts", "Tree-Nut", "Dairy", "Eggs", "Gluten", "Fish", 
+                            "Crustcean", "Shellfish", "Soy", "Sesame"   
+                        ];
 
-                    allergyhtml = "";
-                    for (let j = 0; j < allergies.length; j++) {
-                        if (y.includes(allergies[j])) {
-                            allergyhtml += makeCheckedBox(j, allergies[j], "allergy", "all");
-                        } else {
-                            allergyhtml += makeunCheckedBox(j, allergies[j], "allergy", "all");
+                        allergyhtml = "";
+                        for (let j = 0; j < allergies.length; j++) {
+                            if (y.includes(allergies[j])) {
+                                allergyhtml += makeCheckedBox(j, allergies[j], "allergy", "all");
+                            } else {
+                                allergyhtml += makeunCheckedBox(j, allergies[j], "allergy", "all");
+                            }
                         }
-                    }
 
-                    $("#allergies-content").html(allergyhtml);
+                        $("#allergies-content").html(allergyhtml);
 
-                var diet = getdiet(sessionuser).catch(console.error);
-                diet.then(z => {
-                    let dietType = [
-                        "Vegetarian", "Vegan", "Pescatarian", "Pork-Free", "Kosher", "Alcohol-Free",
-                        "Red-Meat-Free", "Low Sugar", "Paleo", "Keto", 
-                    ];
+                    var diet = getdiet(sessionuser).catch(console.error);
+                    diet.then(z => {
+                        let dietType = [
+                            "Vegetarian", "Vegan", "Pescatarian", "Pork-Free", "Kosher", "Alcohol-Free",
+                            "Red-Meat-Free", "Low Sugar", "Paleo", "Keto", 
+                        ];
 
-                    diethtml = ""
-                    for (let j = 0; j < dietType.length; j++) {
-                        if (z.includes(dietType[j])) {
-                            diethtml += makeCheckedBox(j, dietType[j], "diets", "diet");
-                        } else {
-                            diethtml += makeunCheckedBox(j, dietType[j], "diets", "diet");
+                        diethtml = ""
+                        for (let j = 0; j < dietType.length; j++) {
+                            if (z.includes(dietType[j])) {
+                                diethtml += makeCheckedBox(j, dietType[j], "diets", "diet");
+                            } else {
+                                diethtml += makeunCheckedBox(j, dietType[j], "diets", "diet");
+                            }
                         }
-                    }
 
-                    $("#diet-content").html(diethtml);
+                        $("#diet-content").html(diethtml);
 
-                    res.send($.html());
+                        res.send($.html());
+                    })
                 })
-            })
+            });
         });
-    });
+    }
 })
 
 router.post('/', function(request, response, next){
     // console.log(request.body);
     const sessionuser = request.session.user;
-    // //database stuff
-    //check which form being submitted
-    if (request.body['ingredform'] == "true"){
-        var ret = updateingred(sessionuser, request.body).catch(console.error);
-        ret.then(x => { 
-            response.redirect("/profile");
-        });
+    if (sessionuser == null) {
+        response.redirect("/");
     } else {
-        // console.log(request.body);
-        var ret = updatepref(sessionuser, request.body).catch(console.error);
-        ret.then(x => { 
-            response.redirect("/profile");
-        });
+        // //database stuff
+        //check which form being submitted
+        if (request.body['ingredform'] == "true"){
+            var ret = updateingred(sessionuser, request.body).catch(console.error);
+            ret.then(x => { 
+                response.redirect("/profile");
+            });
+        } else {
+            // console.log(request.body);
+            var ret = updatepref(sessionuser, request.body).catch(console.error);
+            ret.then(x => { 
+                response.redirect("/profile");
+            });
+        }
+        //reroute
+        // response.send(request.body);
+        // response.redirect("/profile");
     }
-    //reroute
-	// response.send(request.body);
-	// response.redirect("/profile");
 });
 
 module.exports=router
