@@ -117,7 +117,7 @@ function populateForm()
                         </div>
                     </td>
                     <td>
-                        <select name='diet' id='diet'>
+                        <select name='nutrition' id='nutrition'>
                         <option>none</option>
                         <option>balanced</option>
                         <option>high-fiber</option>
@@ -126,6 +126,28 @@ function populateForm()
                         <option>low-fat</option>
                         <option>low-sodium</option>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <h2><label class="num">5</label>Excluding the Following Allergies:</h2>
+                        </div>
+                    </td>
+                    <td>
+                        <ul name='allergies' id='allergies'>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <h2><label class="num">6</label>With the Following Diets:</h2>
+                        </div>
+                    </td>
+                    <td>
+                        <ul name='diet' id='diet'>
+                        </ul>
                     </td>
                 </tr>
             </table>
@@ -160,10 +182,10 @@ function sendReq()
         additionalQueries = additionalQueries + "&mealType=" + mealtype;
     }
 
-	var diet = document.getElementById('diet').value;
-    if(diet != 'none')
+	var nutrition = document.getElementById('nutrition').value;
+    if(nutrition != 'none')
     {
-        additionalQueries = additionalQueries + "&diet=" + diet;
+        additionalQueries = additionalQueries + "&diet=" + nutrition;
     }
 
     //*****************ERIC POPULATE ARRAY HERE************************

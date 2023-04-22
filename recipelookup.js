@@ -95,49 +95,19 @@ router.get("/",(req,res,next)=>{
                 for (i = 0; i < x.length; i++) {
                     $("#listofingred").append('<input type="radio" name="ingredient" class="ingredient" value="' + x[i] + '" id="ingredient' + i + '"></input><label for="ingredient' + i + '">' + x[i] + '</label></br>');
                 }
-                // <input type="radio" name="ingredient" class="ingredient" value="chicken" id="ingredient1"></input>
-                // <label for="ingredient1">Chicken</label>
-                // <br>
-                // var allergies = getallergies("1").catch(console.error);
-                // allergies.then(y => {
-                //         let allergies = [
-                //             "Peanuts", "Tree-Nut", "Dairy", "Eggs", "Gluten", "Fish", 
-                //             "Crustcean", "Shellfish", "Soy", "Sesame"   
-                //         ];
-
-                //         allergyhtml = "";
-                //         for (let j = 0; j < allergies.length; j++) {
-                //             if (y.includes(allergies[j])) {
-                //                 allergyhtml += makeCheckedBox(j, allergies[j], "allergy", "all");
-                //             } else {
-                //                 allergyhtml += makeunCheckedBox(j, allergies[j], "allergy", "all");
-                //             }
-                //         }
-
-                //         $("#allergies-content").html(allergyhtml);
-
-                //     var diet = getdiet("1").catch(console.error);
-                //     diet.then(z => {
-                //         let dietType = [
-                //             "Vegetarian", "Vegan", "Pescatarian", "Pork-Free", "Kosher", "Alcohol-Free",
-                //             "Red-Meat-Free", "Low Sugar", "Paleo", "Keto", 
-                //         ];
-
-                //         diethtml = ""
-                //         for (let j = 0; j < dietType.length; j++) {
-                //             if (z.includes(dietType[j])) {
-                //                 diethtml += makeCheckedBox(j, dietType[j], "diets", "diet");
-                //             } else {
-                //                 diethtml += makeunCheckedBox(j, dietType[j], "diets", "diet");
-                //             }
-                //         }
-
-                //         $("#diet-content").html(diethtml);
-
-                //         res.send($.html());
-                //     })
-                // })
+                var allergies = getallergies("1").catch(console.error);
+                allergies.then(y => {
+                    for (i = 0; i < y.length; i++) {
+                        $("#allergies").append('<li>' + y[i] + '</li>');
+                    }
+                    var diet = getdiet("1").catch(console.error);
+                    diet.then(z => {
+                        for (i = 0; i < z.length; i++) {
+                            $("#diet").append('<li>' + z[i] + '</li>');
+                        }
                         res.send($.html());
+                    })
+                })
             });
         });
     // }
