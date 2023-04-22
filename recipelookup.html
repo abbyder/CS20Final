@@ -63,8 +63,6 @@ function populateForm()
 }    
 </script>
 <body>
-	
-
     <div class="header">
         <ul class="nav">
             <li id="header"><img src="images\navlogo.png" height="70px" class="logo"></li>
@@ -143,8 +141,6 @@ function populateForm()
     <div id="recipes">
 
     </div>
-
-
 <script>
 
 populateForm();
@@ -237,11 +233,21 @@ function sendReq()
 
                 //create header object for storing recipe name
                 var recipeLabelObject = document.createElement('h3');
-                recipeLabelObject.textContent = `Recipe ${i}: ${recipeLabel}`;
+
+                var link = `Recipe ${i} : ${currentRecipe.recipe.url}`;
+                link = link.split("http://");
+                console.log(link[1]);
+                link = "https://" + link[1];
+
+                var recipeLink = document.createElement('a');
+                recipeLink.href = link;
+                recipeLink.textContent = `Recipe ${i}: ${recipeLabel}`;
+                recipeLabelObject.appendChild(recipeLink);
 
                 //create div object for storing entire recipe and add header
                 var recipeListItem = document.createElement('div');
                 recipeListItem.appendChild(recipeLabelObject);
+                recipeListItem.appendChild(recipeLink);
 
                 //create list object for storing ingredients, then add to div
                 var ingredientList = document.createElement('ul');
