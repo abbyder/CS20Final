@@ -2,6 +2,7 @@
     <head>
         <title>Recipes | MyMeals</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel = "stylesheet" type = "text/css" href = "recipesheader.css">
         <style type="text/css">
             .form {
                 background-color: #ffa4d0;
@@ -124,27 +125,6 @@
                 font-size: 15px;
                 text-align: center
             }
-            .recipeImage {
-                margin: 0 auto;
-                float: left;
-            }
-            .recipeIngredients {
-                margin: 0 auto;
-                float: left
-            }
-            #recipe1 {
-                width: 50%
-            }
-            .titleLink {
-                text-align: center;
-                color:#f9d00f
-            }
-            h3 {
-                text-align: center;
-            }
-            .ingredientList {
-                width: 50%
-            }
 
         </style>
 
@@ -166,6 +146,15 @@
     </head>
 
     <body>
+
+        <div class="header">
+            <ul class="nav">
+                <li id="header"><img src="images\navlogo.png" height="70px" class="logo"></li>
+                <li id="header" class="right"><a  class="headerlink" href="file:///C:/Users/emily/OneDrive/Desktop/CS20%20Github/CS20Final/header.html">&nbsp; &nbsp;<img src="images\profile.png" height="50px" class="userPage"><text class="headertext">PROFILE</text></a></li>
+            </ul>
+        </div>
+
+
         <div class="content">
             <h1>Find Your Custom Recipes</h1>
             <form class="form" name="form" method='get' onsubmit="event.preventDefault()">
@@ -240,27 +229,7 @@
             </div>
         </div>
         <div id="recipes">
-            <div id="recipe1">
-                <div class="recipeImage">
-                    <h3><a class="titleLink" href="http://www.seriouseats.com/recipes/2011/12/chicken-vesuvio-recipe.html">Chicken Vesuvio</a></h3>
-                    <img src="mymeals logos\facebook_profile_image.png" id="logo" height="200"/>
-                </div>
-                <div class="recipeIngredients">
-                    <br /> <br />
-                    <ul class="ingredientList">
-                        <li>1/2 cup olive oil</li>
-                        <li>5 cloves garlic, peeled</li>
-                        <li>2 large russet potatoes, peeled and cut into chunks</li>
-                        <li>1 3-4 pound chicken, cut into 8 pieces (or 3 pound chicken legs)</li>
-                        <li>3/4 cup white wine</li>
-                        <li>3/4 cup chicken stock</li>
-                        <li>3 tablespoons chopped parsley</li>
-                        <li>1 tablespoon dried oregano</li>
-                        <li>Salt and pepper</li>
-                        <li>1 cup frozen peas, thawed</li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
 
 
