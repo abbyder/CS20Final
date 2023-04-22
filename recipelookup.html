@@ -234,15 +234,21 @@ function sendReq()
                 //create header object for storing recipe name
                 var recipeLabelObject = document.createElement('h3');
 
-                var link = `Recipe ${i} : ${currentRecipe.recipe.url}`;
-                link = link.split("http://");
-                console.log(link[1]);
-                link = "https://" + link[1];
-
+                //create link object
+                var link = `${currentRecipe.recipe.url}`;
+                console.log(currentRecipe.recipe.url);
+                //fix link if http
+                if(link.includes("http://"))
+                {
+                    link = link.split("http://");
+                    console.log(link[1]);
+                    link = "https://" + link[1];
+                }
                 var recipeLink = document.createElement('a');
                 recipeLink.href = link;
-                recipeLink.textContent = `Recipe ${i}: ${recipeLabel}`;
+                recipeLink.textContent = `${recipeLabel}`;
                 recipeLabelObject.appendChild(recipeLink);
+                recipeLink.target='blank';
 
                 //create div object for storing entire recipe and add header
                 var recipeListItem = document.createElement('div');
