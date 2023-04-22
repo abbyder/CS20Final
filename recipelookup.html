@@ -22,8 +22,11 @@
 
 function populateForm()
 {
-    //array of food items. Get this from the database somehow
+    //*****************ERIC POPULATE ARRAY HERE************************
+    //array of food items from database somehow
     const foodItems = ['Chicken', 'Steak', 'Olive Oil', "Banana"];
+
+    //*****************ERIC POPULATE BOOL HERE************************
     //bool value subscribed or not, get from database
     var subscribed = false;
 
@@ -110,7 +113,7 @@ function populateForm()
                 <tr>
                     <td>
                         <div class="title">
-                            <h2><label class="num">4</label>Choose Your Dietary Options</h2>
+                            <h2><label class="num">4</label>Choose Your Nutrition Options</h2>
                         </div>
                     </td>
                     <td>
@@ -148,7 +151,6 @@ populateForm();
 
 function sendReq()
 {
-    
     //process additional search modifiers into strings and append request URL
     var additionalQueries = "";
 
@@ -164,11 +166,20 @@ function sendReq()
         additionalQueries = additionalQueries + "&diet=" + diet;
     }
 
-    //assume this array is a list of allergens/ excluded ingredients from database
+    //*****************ERIC POPULATE ARRAY HERE************************
+    //assume this array is a list of allergens/excluded ingredients from database
     var allergens = [];
     for(var p = 0; p < allergens.length; p++)
     {
         additionalQueries = additionalQueries + "&excluded=" + allergens[p];
+    }
+
+    //*****************ERIC POPULATE ARRAY HERE************************
+    //assume this array is a list of diet/health options from database
+    var dietaryList = [];
+    for(var q = 0; q < allergens.length; q++)
+    {
+        additionalQueries = additionalQueries + "&health=" + dietaryList[q];
     }
 
     //process ingredients into string
