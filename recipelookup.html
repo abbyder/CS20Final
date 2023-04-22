@@ -5,20 +5,64 @@
 <title>Recipe Form</title>
 </head>
 
+<script>
+
+function populateForm()
+{
+    //array of food items. Get this from the database somehow
+    const foodItems = ['Chicken', 'Steak', 'Olive Oil', "Banana"];
+    //bool value subscribed or not, get from database
+    var subscribed = false;
+
+    var ingredientCell = document.createElement('td');
+
+    for (let i = 0; i < foodItems.length; i++) 
+    {
+        //create button for each ingredient
+        const checkbox = document.createElement('input');
+        
+        //check if subscribed
+        if(subscribed)
+        {
+            checkbox.type = 'checkbox';
+        }
+        else
+        {
+            checkbox.type = 'radio';
+        }
+        checkbox.name = "ingredient";
+        checkbox.className = 'ingredient';
+        checkbox.value = foodItems[i].toLowerCase();
+        checkbox.id = `ingredient${i+1}`;
+        ingredientCell.appendChild(checkbox);
+
+        //create label
+        const label = document.createElement('label');
+        label.htmlFor = `ingredient${i+1}`;
+        label.appendChild(document.createTextNode(foodItems[i]));
+        ingredientCell.appendChild(label);
+
+        ingredientCell.appendChild(document.createElement('br'));
+    
+        var ingredientDisplay = document.getElementById("userIngredientSection");
+        ingredientDisplay.appendChild(ingredientCell);
+    }
+    // <td>
+    //             <input type="checkbox" class="ingredient" value="chicken">
+    //             <label for="ingredient1">Chicken</label><br>
+    //             <input type="checkbox" class="ingredient" value="steak">
+    //             <label for="ingredient2">Steak</label><br>
+    //             <input type="checkbox" class="ingredient" value="olive oil">
+    //             <label for="ingredient3">Olive Oil</label><br>
+    //           </td>
+}    
+</script>
 <body>
 	<form method='get' onsubmit="event.preventDefault()">
         <table>
-            <tr>
+            <tr id="userIngredientSection">
               <td>Select Ingredients:</td>
-              <td>
-                <input type="checkbox" class="ingredient" value="chicken">
-                <label for="ingredient1">Chicken</label><br>
-                <input type="checkbox" class="ingredient" value="steak">
-                <label for="ingredient2">Steak</label><br>
-                <input type="checkbox" class="ingredient" value="olive oil">
-                <label for="ingredient3">Olive Oil</label><br>
 
-              </td>
             </tr>
             <tr>
                 <td>Max Cooking time (minutes):</td>
@@ -54,12 +98,15 @@
     <input type = 'submit'  value= 'Search' onclick="sendReq()"/>
 	</form>
     <div id="recipes">
-
     </div>
 <script>
 
+populateForm();
+
+
 function sendReq()
 {
+    
     //process additional search modifiers into strings and append request URL
     var additionalQueries = "";
 
@@ -73,6 +120,13 @@ function sendReq()
     if(diet != 'none')
     {
         additionalQueries = additionalQueries + "&diet=" + diet;
+    }
+
+    //assume this array is a list of allergens/ excluded ingredients from database
+    var allergens = [];
+    for(var p = 0; p < allergens.length; p++)
+    {
+        additionalQueries = additionalQueries + "&excluded=" + allergens[p];
     }
 
     //process ingredients into string
@@ -93,6 +147,7 @@ function sendReq()
 
         if(ingredients[i].checked) 
         {
+            //validate + add selected ingredients to query
             atLeastOneSelected = true;
             query = query + " " + (ingredients[i].value);
         }
