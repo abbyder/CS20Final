@@ -1,7 +1,7 @@
 const express=require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 // Importing all the routes
 const homeroute=require("./home.js");
