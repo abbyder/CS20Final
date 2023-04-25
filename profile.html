@@ -379,7 +379,7 @@
         <div id="prof-header-text-box">
         <div id="prof-header-text">
             <h1 class="usn"></h1>
-            <div id="mem-type"><p>MyMeals Basic Plan</p></div>
+            <div id="mem-type"><p class="membership"></p></div>
             <!-- TODO consider????? -->
             <!-- <p id="prof-description">
             Add ingredients and customize your MyMeals profile.
@@ -406,7 +406,7 @@
                 <div id="ingred-hidden"></div>
                 <input type="text" name="profile-ingredients" id="prof-ingred-input" />
                 <input type="text" id="count" name="count" hidden>
-                <input type='hidden' name='ingredform' value=true>            
+                <input type='hidden' name='formtype' value=ingredients>            
         </div>       
         <div id="ingred-display"><div id="prof-ingred-display"></div></div>
         <div id="ingred-submit-container">
@@ -439,7 +439,7 @@
                 <div id="diet-content"></div>
             </div>
         </section>
-        <input type='hidden' name='ingredform' value=false>
+        <input type='hidden' name='formtype' value="preferences">
         <div id="pref-submit-container">
             <input type="submit" value="Save Preferences" id="pref-submit" />
         </div>
@@ -451,7 +451,7 @@
     <br /><br />
     <div id="upgrade-box2">
     <div class="upgrade-box">
-    <h2>Upgrade your MyMeals Experience!</h2>
+    <h2 class="upgrade-msg">Upgrade your MyMeals Experience!</h2>
     <p class="instructions">
         Join the MyMeals premium plan community for access to unlimited
         ingredient selection in your recipe search. Your recipes will be even
@@ -460,7 +460,7 @@
     
     <section class="upgrade-mem">
     
-    <form method="post" id="upgrade-form" onsubmit="return validateMem();" action="https://mymeals.herokuapp.com/profile">
+    <form method="post" id="upgrade-form" onsubmit="return validateMem();">
     <div id="upgrade-form-container">
         <div class="userInfo"><label class="upg">Card Number:</label> <input type="text"  name='card' /></div>
         <div class="userInfo"><label class="upg">CVV:</label>  <input type="text"  name='cvv' /></div>
@@ -497,6 +497,7 @@
             <input type="submit" value="Upgrade Membership" id="upgrade-submit" />
         </div>
     </div>
+    <input type='hidden' name='formtype' value="membership">
     </form>
     
     </section>
