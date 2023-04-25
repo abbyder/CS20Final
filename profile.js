@@ -71,6 +71,31 @@ async function updatepref(usn, data) {
     }
 }
 
+
+async function updatemember(usn) {
+    var MongoClient = require('mongodb').MongoClient;
+    var uri = "mongodb+srv://erickim:123@cluster0.wzucucu.mongodb.net/?retryWrites=true&w=majority";
+    const client = new MongoClient(uri);
+    //{useUnifiedTopology: true} ??? ^
+
+    try {
+        await client.connect();
+
+        const database = client.db("user_info");
+        const user = database.collection("users");
+        // check here if user already exists.
+        // create a document to insert
+        const result = await user.findOneAndUpdate(
+            { "username" : usn },
+            { $set: {"membership" : "true" }}
+        );
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
 async function getingred(usn) {
     var MongoClient = require('mongodb').MongoClient;
     var uri = "mongodb+srv://erickim:123@cluster0.wzucucu.mongodb.net/?retryWrites=true&w=majority";
@@ -132,6 +157,30 @@ async function getdiet(usn) {
         array = await cursor.toArray();
         if (array.length > 0) { 
             return array[0].dietprefs;
+        }
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+
+async function getmembership(usn) {
+    var MongoClient = require('mongodb').MongoClient;
+    var uri = "mongodb+srv://erickim:123@cluster0.wzucucu.mongodb.net/?retryWrites=true&w=majority";
+    const client = new MongoClient(uri);
+    //{useUnifiedTopology: true} ??? ^
+
+    try {
+        await client.connect();
+
+        const database = client.db("user_info");
+        const user = database.collection("users");
+        const cursor = user.find({ "username" : usn }).project({_id: 0, membership: 1});
+        array = await cursor.toArray();
+        if (array.length > 0) { 
+            return array[0].membership;
         }
     } catch (e) {
         console.error(e);
@@ -214,7 +263,19 @@ router.get("/",(req,res,next)=>{
 
                         $("#diet-content").html(diethtml);
 
-                        res.send($.html());
+                        var membership = getmembership(sessionuser).catch(console.error);
+                        membership.then(w => {
+                            console.log(w);
+                            if (w == "false") {
+                                $(".membership").html("MyMeals Basic Plan");
+                            } else {
+                                $(".membership").html("MyMeals Premium Plan");
+                                $("#upgrade-form").html("");
+                                $(".upgrade-msg").html("");
+                                $(".instructions").html("");
+                            }
+                            res.send($.html());
+                        })
                     })
                 })
             });
@@ -230,14 +291,19 @@ router.post('/', function(request, response, next){
     } else {
         // //database stuff
         //check which form being submitted
-        if (request.body['ingredform'] == "true"){
+        if (request.body['formtype'] == "ingredients"){
             var ret = updateingred(sessionuser, request.body).catch(console.error);
             ret.then(x => { 
                 response.redirect("/profile");
             });
-        } else {
+        } else if (request.body['formtype'] == "preferences"){
             // console.log(request.body);
             var ret = updatepref(sessionuser, request.body).catch(console.error);
+            ret.then(x => { 
+                response.redirect("/profile");
+            });
+        } else {
+            var ret = updatemember(sessionuser).catch(console.error);
             ret.then(x => { 
                 response.redirect("/profile");
             });
