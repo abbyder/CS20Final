@@ -19,51 +19,52 @@
 </script>
 
 <script>
+// function no longer needed, form populated by node
 
-function populateForm()
-{
-    //*****************ERIC POPULATE ARRAY HERE************************
-    //array of food items from database somehow
-    const foodItems = ['Chicken', 'Steak', 'Olive Oil', "Banana"];
+// function populateForm()
+// {
+//     //*****************ERIC POPULATE ARRAY HERE************************
+//     //array of food items from database somehow
+//     const foodItems = ['Chicken', 'Steak', 'Olive Oil', "Banana"];
 
-    //*****************ERIC POPULATE BOOL HERE************************
-    //bool value subscribed or not, get from database
-    var subscribed = false;
+//     //*****************ERIC POPULATE BOOL HERE************************
+//     //bool value subscribed or not, get from database
+//     var subscribed = false;
 
-    var ingredientCell = document.createElement('td');
+//     var ingredientCell = document.createElement('td');
 
-    for (let i = 0; i < foodItems.length; i++) 
-    {
-        //create button for each ingredient
-        const checkbox = document.createElement('input');
+//     for (let i = 0; i < foodItems.length; i++) 
+//     {
+//         //create button for each ingredient
+//         const checkbox = document.createElement('input');
         
-        //check if subscribed
-        if(subscribed)
-        {
-            checkbox.type = 'checkbox';
-        }
-        else
-        {
-            checkbox.type = 'radio';
-        }
-        checkbox.name = "ingredient";
-        checkbox.className = 'ingredient';
-        checkbox.value = foodItems[i].toLowerCase();
-        checkbox.id = `ingredient${i+1}`;
-        ingredientCell.appendChild(checkbox);
+//         //check if subscribed
+//         if(subscribed)
+//         {
+//             checkbox.type = 'checkbox';
+//         }
+//         else
+//         {
+//             checkbox.type = 'radio';
+//         }
+//         checkbox.name = "ingredient";
+//         checkbox.className = 'ingredient';
+//         checkbox.value = foodItems[i].toLowerCase();
+//         checkbox.id = `ingredient${i+1}`;
+//         ingredientCell.appendChild(checkbox);
 
-        //create label
-        const label = document.createElement('label');
-        label.htmlFor = `ingredient${i+1}`;
-        label.appendChild(document.createTextNode(foodItems[i]));
-        ingredientCell.appendChild(label);
+//         //create label
+//         const label = document.createElement('label');
+//         label.htmlFor = `ingredient${i+1}`;
+//         label.appendChild(document.createTextNode(foodItems[i]));
+//         ingredientCell.appendChild(label);
 
-        ingredientCell.appendChild(document.createElement('br'));
+//         ingredientCell.appendChild(document.createElement('br'));
     
-        var ingredientDisplay = document.getElementById("userIngredientSection");
-        ingredientDisplay.appendChild(ingredientCell);
-    }
-}    
+//         var ingredientDisplay = document.getElementById("userIngredientSection");
+//         ingredientDisplay.appendChild(ingredientCell);
+//     }
+// }    
 </script>
 <body>
     <div class="header">
@@ -92,7 +93,7 @@ function populateForm()
                             <h2><label class="num">2</label>Choose Your Max Cooking Time (minutes) &nbsp &nbsp &nbsp</h2>
                         </div>
                     </td>
-                    <td><input type='number' min="0" max="120" name='minutes'/></td>
+                    <td><input type='number' min="0" max="120" name='minutes' id='minutes'/></td>
                 </tr>
                 <tr>
                     <td>
@@ -188,20 +189,30 @@ function sendReq()
         additionalQueries = additionalQueries + "&diet=" + nutrition;
     }
 
+    var minutes = document.getElementById('minutes').value;
+    if(minutes.trim() != '')
+    {
+        additionalQueries = additionalQueries + "&time=" + nutrition;
+    }
+
     //*****************ERIC POPULATE ARRAY HERE************************
     //assume this array is a list of allergens/excluded ingredients from database
-    var allergens = [];
-    for(var p = 0; p < allergens.length; p++)
+    var allergenObjectString = "";
+    var allergenObjectArray = document.querySelectorAll('#allergies li');
+    for(var p = 0; p < allergenObjectArray.length; p++)
     {
+        allergenObjectString = allergenObjectArray[q].value;
         additionalQueries = additionalQueries + "&excluded=" + allergens[p];
     }
 
     //*****************ERIC POPULATE ARRAY HERE************************
     //assume this array is a list of diet/health options from database
-    var dietaryList = [];
-    for(var q = 0; q < allergens.length; q++)
+    var dietaryObjectString = "";
+    var dietaryObjectArray = document.querySelectorAll('#diet li');
+    for(var q = 0; q < dietaryObjectArray.length; q++)
     {
-        additionalQueries = additionalQueries + "&health=" + dietaryList[q];
+        dietaryObjectString = dietaryObjectArray[q].value;
+        additionalQueries = additionalQueries + "&health=" + dietaryObjectString;
     }
 
     //process ingredients into string
@@ -211,8 +222,8 @@ function sendReq()
     var ingredients = document.querySelectorAll('.ingredient');
 
     //create + populate array of user's ingredients
-    //this currently gets the list from the form. Should be updated to grab
-    //list from the database in future.
+    //this currently gets the list from the form, which should be populated from
+    //the database 
     var userIngredientList = [];
 
     for (var i = 0; i < ingredients.length; i++) 
