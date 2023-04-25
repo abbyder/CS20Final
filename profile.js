@@ -271,7 +271,7 @@ router.get("/",(req,res,next)=>{
                             } else {
                                 $(".membership").html("MyMeals Premium Plan");
                                 $("#upgrade-form").html("");
-                                $(".upgrade-msg").html("");
+                                $(".upgrade-msg").html("You are a premium member!");
                                 $(".instructions").html("");
                             }
                             res.send($.html());
