@@ -93,7 +93,7 @@
                             <h2><label class="num">2</label>Choose Your Max Cooking Time (minutes) &nbsp &nbsp &nbsp</h2>
                         </div>
                     </td>
-                    <td><input type='number' min="0" max="120" name='minutes'/></td>
+                    <td><input type='number' min="0" max="120" name='minutes' id='minutes'/></td>
                 </tr>
                 <tr>
                     <td>
@@ -187,6 +187,12 @@ function sendReq()
     if(nutrition != 'none')
     {
         additionalQueries = additionalQueries + "&diet=" + nutrition;
+    }
+
+    var minutes = document.getElementById('minutes').value;
+    if(minutes.trim() != '')
+    {
+        additionalQueries = additionalQueries + "&time=" + nutrition;
     }
 
     //*****************ERIC POPULATE ARRAY HERE************************
