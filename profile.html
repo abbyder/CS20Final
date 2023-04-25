@@ -15,6 +15,10 @@
             margin: 0px 50px;
         }
 
+        h1 {
+            font-size: 35px;
+        }
+
         h2 {
             text-align: center;
             font-size: 30px;
@@ -22,36 +26,71 @@
 
         h3 {
             text-align: center;
+            font-size: 18px;
         }
 
         p.instructions {
             text-align: center;
             font-size: 18px;
-            width: 800px;
+            width: 700px;
             margin: auto;
             line-height: 24px;
         }
 
         /* header */
         .prof-header {
-            display: flex;
-            justify-content: center; 
-            margin: 20px;  
-            background-color: blanchedalmond;      /* TODO get rid of */
+            width: 630px;
+            height: 300px;
+            background-color: white;
             align-items: center;    
+            z-index: 2;
+            filter: drop-shadow(0 0 0.6rem #e7e7e7);
+            position: relative;
+            top: 100px;
+            border-radius: 20px;
+        }
+
+        #prof-header-bg {
+            background-color: #f9d149;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            position: relative;
         }
 
         #prof-header-img {
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 3;
+            top: -90px;
         }
 
         #prof-header-img img {
-            width: 100px;
+            width: 140px;
             border-radius: 100%;
+            border: 15px solid white;
         }
 
-        #prof-header-text {
-            padding: 20px;
+        #prof-header-text-box {
+            display: flex;
+            justify-content: center;
+            margin-top: -50px;
+        }
+
+        #mem-type {
+            display: flex;
+            justify-content: center;
+        }
+
+        #mem-type p {
+            font-size: 18px;
+        }
+
+        #prof-description {
+            font-size: 16px;
+            text-align: center;
+            width: 500px;
         }
 
         #prof-header-text h1 {
@@ -60,10 +99,28 @@
             margin-bottom: 10px;
         }
 
+        .usn {
+            text-align: center;
+        }
+
         /* user ingredients */
+        .ingred-box {
+            width: 900px;
+            height: fit-content;
+            filter: drop-shadow(0 0 0.6rem #e7e7e7);
+            border-radius: 20px;
+            background-color: coral;
+            padding: 25px 0px 45px;
+        }
+
+        #ingred-box2 {
+            display: flex;
+            justify-content: center;
+        }
+
         #prof-ingred {
             margin: 20px;  
-            background-color: blanchedalmond;      /* TODO get rid of */
+            /* background-color: black;      TODO get rid of?? */
             align-items: center; 
         }
 
@@ -101,7 +158,7 @@
             font-size: 16px;
             padding: 10px 20px;
             border-radius: 20px;
-            background-color: coral; /* TODO change */
+            background-color: white; /* TODO change */
             width: fit-content;
             height: fit-content;
             margin: 10px;
@@ -112,8 +169,8 @@
 
         .xBtn {
             width: 20px;
-            color: white;
-            background-color: coral;
+            color: black;
+            background-color: white;
             border-radius: 100%;
             margin-right: 10px;
             border: 0px;
@@ -121,11 +178,25 @@
         }
 
         .xBtn:hover {
-            background-color: white;
-            color: black;
+            background-color: black;
+            color: white;
         }
 
         /* allergies/diet pref section */
+        .pref-box {
+            width: 900px;
+            height: fit-content;
+            filter: drop-shadow(0 0 0.6rem #e7e7e7);
+            border-radius: 20px;
+            background-color: #f9d149;
+            padding: 25px 0px 45px;
+        }
+
+        #pref-box2 {
+            display: flex;
+            justify-content: center;
+        }
+
         .food-pref {
             margin: 20px 100px;
             display: flex;
@@ -197,6 +268,20 @@
         }
 
         /* upgrade membership */
+        .upgrade-box {
+            width: 900px;
+            height: fit-content;
+            filter: drop-shadow(0 0 0.6rem #e7e7e7);
+            border-radius: 20px;
+            background-color: white;
+            padding: 25px 0px 45px;
+        }
+
+        #upgrade-box2 {
+            display: flex;
+            justify-content: center;
+        }
+
         .upgrade-mem {
             display: flex;
             justify-content: center;
@@ -278,23 +363,33 @@
             <li id="header" class="right"><a  class="headerlink" href="https://mymeals.herokuapp.com/recipelookup">&nbsp; <img src="recipes.png" height="50px" class="recipePage"><text class="headertext">RECIPES</text></a></li>
         </ul>
     </div>
-
-    <div class="content">
     
     <!-- section: header for user profile -->
+    <div id="prof-header-bg">
     <section class="prof-header">
+    
         <div id="prof-header-img">
             <img src="logo.png" alt="profile image">
         </div>
 
+        <div id="prof-header-text-box">
         <div id="prof-header-text">
             <h1 class="usn"></h1>
-            <div id="mem-type">MyMeals Basic Plan</div>
+            <div id="mem-type"><p>MyMeals Basic Plan</p></div>
+            <!-- TODO consider????? -->
+            <!-- <p id="prof-description">
+            Add ingredients and customize your MyMeals profile.
+            </p> -->
         </div>
+        </div>
+    
     </section>
+    </div>
 
     <!-- section: my ingredients -->
-    <br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <div id="ingred-box2">
+    <div class="ingred-box">
     <h2>My Ingredients</h2>
     <p class="instructions">
         Type and enter your ingredients to add them to your profile!
@@ -315,9 +410,14 @@
         </div>
     </form>
     </section>
+    </div>
+    </div>
 
     <!-- section, 2 cols: allergies/diet pref -->
-    <br /><br />
+    <br /><br /><br /><br />
+
+    <div id="pref-box2">
+    <div class="pref-box">
     <h2>My Allergies and Dietary Preferences</h2>
     <p class="instructions">
         Select any allergies or dietary preferences you have.
@@ -340,9 +440,13 @@
             <input type="submit" value="Save Preferences" id="pref-submit" />
         </div>
     </form>
+    </div>
+    </div>
 
     <!-- section: subscription -->
     <br /><br />
+    <div id="upgrade-box2">
+    <div class="upgrade-box">
     <h2>Upgrade your MyMeals Experience!</h2>
     <p class="instructions">
         Join the MyMeals premium plan community for access to unlimited
@@ -352,7 +456,7 @@
     
     <section class="upgrade-mem">
     
-    <form action="get" id="upgrade-form" onsubmit="return validateMem();">
+    <form method="post" id="upgrade-form" onsubmit="return validateMem();" action="https://mymeals.herokuapp.com/profile">
     <div id="upgrade-form-container">
         <div class="userInfo"><label class="upg">Card Number:</label> <input type="text"  name='card' /></div>
         <div class="userInfo"><label class="upg">CVV:</label>  <input type="text"  name='cvv' /></div>
@@ -397,6 +501,8 @@
         first of each month of $4.99. If you would like to cancel your membership, please
         email <a href="mailto:support@mymeals.com">support@mymeals.com</a>.
     </p>
+    </div>
+    </div>
 
     <br /><br /><br /><br />
 
@@ -412,12 +518,6 @@
         
         // add ingredient to user info database
         ingredInput.addEventListener("keydown", function onEvent(e) {
-            // TODO eventually make enter add it to database, then have a 
-            // function that gets user ingredients from databse + displays all
-            // -- could also make it appear alphabetically?
-            // TODO maybe validation -- outline if not found in database +
-            // include suggestions on how to fix it (misspelled, plural, 
-            // feedback that we should add it)
             if (e.key === "Enter" && ingredInput.value != "") {
                 userIngred.push(ingredInput.value.toLowerCase());
                 updateIngredDisplay();
@@ -514,7 +614,7 @@
             if (!isNaN(cardNum.value) && cardNum.value.length == 16) {
                 valCard = true;
             } else {
-                alert("Invalid credit card.");
+                alert("Invalid credit card (must be a 16 digit number).");
             }
 
             // validate cvv
@@ -522,7 +622,7 @@
             if (!isNaN(cvv.value) && (cvv.value.length == 3 || cvv.value.length == 4)) {
                 valCVV = true;
             } else {
-                alert("Invalid CVV number.");
+                alert("Invalid CVV number (must be a 3-4 digit number).");
             }
 
             // validate zip code
@@ -530,12 +630,12 @@
             if (!isNaN(zipCode.value) && zipCode.value.length == 5) {
                 valZip = true;
             } else {
-                alert("Invalid zip code.");
+                alert("Invalid zip code (must be a 5 digit number).");
             }
             
             console.log(memHeaderDisplay)
             if (validInfo && valCard && valCVV && valZip) {
-                memHeaderDisplay.innerHTML = "MyMeals Premium Plan";
+                memHeaderDisplay.innerHTML = "<p>MyMeals Premium Plan</p>";
                 
                 // TODO need to also check if premium plan has already been purchased
                 // if so do an error --- if not, set some bool on user profile to
@@ -546,13 +646,8 @@
             }
             return false;
         }
-        
 
     </script>
-    
-    
-</div>
 
 </body>
-
 </html>
