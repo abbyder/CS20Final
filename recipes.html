@@ -12,17 +12,18 @@
             color:#ffa4d0;
         }
             .form {
-                background-color: blanchedalmond;
+                background-color: coral;
+                filter: drop-shadow(0 0 0.6rem #e7e7e7);
+                border-radius: 20px;
                 padding-top: 20px;
                 width: 1136px;
                 display: block;
                 margin: 0 auto;
                 margin-top: 20px;
                 padding-bottom: 20px;
-                border-radius: 12px
             }
             .collapse {
-                background-color: blanchedalmond;
+                background-color: coral;
                 padding-top: 20px;
                 width: 1136px;
                 display: block;
@@ -34,7 +35,7 @@
             }
             .num {
                 display: inline-block;
-                background-color: #f9d00f;
+                background-color: #fff;
                 border-radius: 50%;
                 margin-right: 20px;
                 font-size: 30px;
@@ -44,18 +45,20 @@
                 text-align: center;
             }
             h2 {
-                color: coral;
+                color: black;
+                font-size: 30px
             }
             .title {
                 height: 60px;
                 line-height: 60px;
                 font-size: 20px;
-                margin-right: 50px
+                margin-right: 50px;
+                color:rgb(0, 0, 0);
             }
             #submit {
                 border-radius: 8px;
-                background-color:#f9d00f;
-                color:coral;
+                background-color:#fff;
+                color:rgb(0, 0, 0);
                 border: none;
                 width: 175px;
                 height: 40px;
@@ -63,8 +66,8 @@
             }
             #edit {
                 border-radius: 8px;
-                background-color:#f9d00f;
-                color:coral;
+                background-color:#fff;
+                color:rgb(0, 0, 0);
                 border: none;
                 width: 175px;
                 height: 40px;
@@ -86,46 +89,53 @@
             }
             h1 {
                 text-align: center;
-                color:#f9d00f;
-                font-size: 40px;
+                font-size: 35px;
                 margin-top: 50px
             }
             #mealtype {
-                color:coral;
+                color:rgb(0, 0, 0);
                 height: 30px;
                 width: 100px;
                 font-size: 15px;
                 text-align: center
             }
             #nutrition {
-                color:coral;
+                color:rgb(0, 0, 0);
                 height: 30px;
                 width: 100px;
                 font-size: 15px;
                 text-align: center
             }
             input[type="number"] {
-                color:coral;
+                color:black;
                 height: 30px;
                 width: 100px;
                 font-size: 15px;
-                text-align: center
+                text-align: center;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             }
             table {
                 margin: 0 auto
             }
 
+            input[type="button"] {
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+
+            input[type="select"] {
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
             
 
             #listofingred, #allergies, #diet {
-                color: coral;
+                color: rgb(0, 0, 0);
                 font-size: 18px;
                 line-height: 27px
             }
             #recipeTitle {
                 text-align: center;
                 font-size: 27px;
-                color:#f9d00f;
+                color:black;
             }
             #recipes {
                 display: block;
@@ -134,7 +144,7 @@
                 text-align: center;
                 font-size: 18px;
                 margin-top: 30px;
-                color: coral;
+                color: black;
             }
             #recipeIngredients {
                 text-align:left;
@@ -149,12 +159,49 @@
             #recipeListItem {
                 display: inline-block;
                 width: 1136px;
-                border-radius: 2px;
-                border-style: solid;
-                border-color:blanchedalmond;
+                background-color:#fff;
+                filter: drop-shadow(0 0 0.6rem #e7e7e7);
+                border-radius: 20px;
                 margin-bottom: 30px;
-                border-radius: 12px
             }
+
+            .tdTitle {
+                vertical-align: top;
+            }
+
+
+
+
+
+            /* header */
+        .prof-header {
+            width: 630px;
+            height: 300px;
+            background-color: white;
+            align-items: center;    
+            z-index: 2;
+            filter: drop-shadow(0 0 0.6rem #e7e7e7);
+            position: relative;
+            top: 100px;
+            border-radius: 20px;
+        }
+
+        #prof-header-bg {
+            background-color: #f9d149;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        #prof-header-text-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            text-align: center
+        }
+
+
 
 
             @media (max-width: 1380px) { .form {width: 1180px} .collapse {width: 1180px} }
@@ -279,6 +326,19 @@
                     <li id="header" class="right"><a  class="headerlink" href="https://mymeals.herokuapp.com/profile">&nbsp; &nbsp;<img src="profile.png" height="50px" class="userPage"><text class="headertext">PROFILE</text></a></li>
                 </ul>
             </div>
+
+            <div id="prof-header-bg">
+                <section class="prof-header">
+            
+                    <div id="prof-header-text-box">
+                    <div id="prof-header-text">
+                        <h1>Find Your Custom Recipes</h1>
+                        <p>Pick your main ingredient and fill out the form to get recommened the perfect recipe based on your ingredients.</p>
+                    </div>
+                    </div>
+                
+                </section>
+                </div>
         
         
             <div class="content">
@@ -286,9 +346,9 @@
                 <form class="form" name="form" method='get' onsubmit="event.preventDefault()">
                     <table>
                         <tr id="userIngredientSection">
-                          <td>
+                          <td class="tdTitle">
                             <div class="title">
-                                <h2><label class="num">1</label>Choose Your Main Ingredient</h2>
+                                <h2><label class="num">1</label>Choose Your Main Ingredient:</h2>
                             </div>
                           </td>
                           
@@ -300,7 +360,7 @@
                         <tr>
                             <td>
                                 <div class="title">
-                                    <h2><label class="num">2</label>Choose Your Max Cooking Time (minutes)</h2>
+                                    <h2><label class="num">2</label>Choose Your Max Cooking Time (minutes):</h2>
                                 </div>
                             </td>
                             <td><input type='number' min="0" max="120" name='minutes'/></td>
@@ -308,7 +368,7 @@
                         <tr>
                             <td>
                                 <div class="title">
-                                    <h2><label class="num">3</label>Choose Your Course Type</h2>
+                                    <h2><label class="num">3</label>Choose Your Course Type:</h2>
                                 </div>
                             </td>
                             <td>
@@ -324,7 +384,7 @@
                         <tr>
                             <td>
                                 <div class="title">
-                                    <h2><label class="num">4</label>Choose Your Nutrition Options</h2>
+                                    <h2><label class="num">4</label>Choose Your Nutrition Options:</h2>
                                 </div>
                             </td>
                             <td>
@@ -340,7 +400,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="tdTitle">
                                 <div class="title">
                                     <h2><label class="num">5</label>Excluding the Following Allergies:</h2>
                                 </div>
@@ -351,7 +411,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="tdTitle">
                                 <div class="title">
                                     <h2><label class="num">6</label>With the Following Diets:</h2>
                                 </div>
@@ -476,7 +536,7 @@
                         var recipeLabel = hits[i-1].recipe.label;
         
                         //create header object for storing recipe name
-                        var recipeLabelObject = document.createElement('h3');
+                        var recipeLabelObject = document.createElement('h2');
                         
         
                         //create link object
