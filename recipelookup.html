@@ -19,7 +19,7 @@
 </script>
 
 <script>
-// function no longer needed, form populated by node
+//function no longer needed, form populated by node
 
 // function populateForm()
 // {
@@ -37,7 +37,7 @@
 //     {
 //         //create button for each ingredient
 //         const checkbox = document.createElement('input');
-        
+    
 //         //check if subscribed
 //         if(subscribed)
 //         {
@@ -60,7 +60,7 @@
 //         ingredientCell.appendChild(label);
 
 //         ingredientCell.appendChild(document.createElement('br'));
-    
+
 //         var ingredientDisplay = document.getElementById("userIngredientSection");
 //         ingredientDisplay.appendChild(ingredientCell);
 //     }
@@ -132,7 +132,7 @@
                 <tr>
                     <td>
                         <div class="title">
-                            <h2><label class="num">5</label>Excluding the Following Allergies:</h2>
+                            <h2><label class="num">5</label>Excluding the Following Allergens:</h2>
                         </div>
                     </td>
                     <td>
@@ -169,7 +169,7 @@
     </div>
 <script>
 
-// populateForm();
+//populateForm();
 
 
 function sendReq()
@@ -277,27 +277,22 @@ function sendReq()
 
                 //create header object for storing recipe name
                 var recipeLabelObject = document.createElement('h3');
+                recipeLabelObject.textContent = recipeLabel;
 
-                //create link object
-                var link = `${currentRecipe.recipe.url}`;
-                console.log(currentRecipe.recipe.url);
-                //fix link if http
-                if(link.includes("http://"))
-                {
-                    link = link.split("http://");
-                    console.log(link[1]);
-                    link = "https://" + link[1];
-                }
-                var recipeLink = document.createElement('a');
-                recipeLink.href = link;
-                recipeLink.textContent = `${recipeLabel}`;
-                recipeLabelObject.appendChild(recipeLink);
-                recipeLink.target='blank';
 
                 //create div object for storing entire recipe and add header
                 var recipeListItem = document.createElement('div');
                 recipeListItem.appendChild(recipeLabelObject);
-                recipeListItem.appendChild(recipeLink);
+
+                //create table for storing image on left and recipe on right
+                var imageAndItemsTable = document.createElement('table');
+                var imageAndItemsTableRow = document.createElement('tr');
+                var imageColumn = document.createElement('th');
+                var recipeColumn = document.createElement('th');
+                imageAndItemsTableRow.appendChild(imageColumn);
+                imageAndItemsTableRow.appendChild(recipeColumn);
+                imageAndItemsTable.appendChild(imageAndItemsTableRow);
+
 
                 //create list object for storing ingredients, then add to div
                 var ingredientList = document.createElement('ul');
@@ -334,13 +329,33 @@ function sendReq()
                     ingredient.textContent = ingredientLines[j];
                     ingredientList.appendChild(ingredient);
                 }
-                recipeListItem.appendChild(ingredientList);
+                recipeColumn.appendChild(ingredientList);
 
-                //create table for storing ingredientlist and image
-                var imageAndIngredients = document.createElement('table');
                 //create img
                 var image = document.createElement('img')
                 image.src = currentRecipe.recipe.image;
+                imageColumn.appendChild(image);
+
+                //add image+list table to div
+                recipeListItem.appendChild(imageAndItemsTable);
+
+                //add link to end
+                //create link object
+                var link = `${currentRecipe.recipe.url}`;
+                console.log(currentRecipe.recipe.url);
+                //fix link if http
+                if(link.includes("http://"))
+                {
+                    link = link.split("http://");
+                    console.log(link[1]);
+                    link = "https://" + link[1];
+                }
+                var recipeLink = document.createElement('a');
+                recipeLink.href = link;
+                recipeLink.textContent = `Go to recipe`;
+                recipeLink.target='blank';
+                recipeListItem.appendChild(recipeLink);
+
                 
 
                 //store crafted recipe div in array with ingredient match count
