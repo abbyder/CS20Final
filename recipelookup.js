@@ -77,10 +77,10 @@ async function getdiet(usn) {
 
 // Handling login request
 router.get("/",(req,res,next)=>{
-    // const sessionuser = req.session.user;
-    // if (sessionuser == null) {
-    //     res.redirect("/");
-    // } else {
+    const sessionuser = req.session.user;
+    if (sessionuser == null) {
+        res.redirect("/");
+    } else {
         // res.send(sessionuser);
         // res.sendFile("profile.html", {root: __dirname });
         // var userInput = req.body.userInput;
@@ -89,18 +89,18 @@ router.get("/",(req,res,next)=>{
 
             var $ = cheerio.load(data);
             
-            var ingredients = getingred("1").catch(console.error);
+            var ingredients = getingred(sessionuser).catch(console.error);
             ingredients.then(x => { 
                 //NEED TO ADD SUBSCRIPTION THING HERE
                 for (i = 0; i < x.length; i++) {
                     $("#listofingred").append('<input type="radio" name="ingredient" class="ingredient" value="' + x[i] + '" id="ingredient' + i + '"></input><label for="ingredient' + i + '">' + x[i] + '</label></br>');
                 }
-                var allergies = getallergies("1").catch(console.error);
+                var allergies = getallergies(sessionuser).catch(console.error);
                 allergies.then(y => {
                     for (i = 0; i < y.length; i++) {
                         $("#allergies").append('<li>' + y[i] + '</li>');
                     }
-                    var diet = getdiet("1").catch(console.error);
+                    var diet = getdiet(sessionuser).catch(console.error);
                     diet.then(z => {
                         for (i = 0; i < z.length; i++) {
                             $("#diet").append('<li>' + z[i] + '</li>');
@@ -110,7 +110,7 @@ router.get("/",(req,res,next)=>{
                 })
             });
         });
-    // }
+    }
 })
 
 // router.post('/', function(request, response, next){
