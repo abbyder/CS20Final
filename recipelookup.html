@@ -74,99 +74,110 @@
         </ul>
     </div>
 
-
-    <div class="content">
-        <h1>Find Your Custom Recipes</h1>
-        <form class="form" name="form" method='get' onsubmit="event.preventDefault()">
-            <table>
-                <tr id="userIngredientSection">
-                  <td>
-                    <div class="title">
-                        <h2><label class="num">1</label>Choose Your Main Ingredient</h2>
-                    </div>
-                  </td>
-                  <td id="listofingred"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="title">
-                            <h2><label class="num">2</label>Choose Your Max Cooking Time (minutes) &nbsp &nbsp &nbsp</h2>
-                        </div>
-                    </td>
-                    <td><input type='number' min="0" max="120" name='minutes' id='minutes'/></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="title">
-                            <h2><label class="num">3</label>Choose Your Course Type</h2>
-                        </div>
-                    </td>
-                    <td>
-                        <select name='mealtype' id='mealtype'>
-                        <option>All</option>
-                        <option>Breakfast</option>
-                        <option>Lunch</option>
-                        <option>Dinner</option>
-                        <option>Dessert</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="title">
-                            <h2><label class="num">4</label>Choose Your Nutrition Options</h2>
-                        </div>
-                    </td>
-                    <td>
-                        <select name='nutrition' id='nutrition'>
-                        <option>none</option>
-                        <option>balanced</option>
-                        <option>high-fiber</option>
-                        <option>high-protein</option>
-                        <option>low-carb</option>
-                        <option>low-fat</option>
-                        <option>low-sodium</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="title">
-                            <h2><label class="num">5</label>Excluding the Following Allergens:</h2>
-                        </div>
-                    </td>
-                    <td>
-                        <ul name='allergies' id='allergies'>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="title">
-                            <h2><label class="num">6</label>With the Following Diets:</h2>
-                        </div>
-                    </td>
-                    <td>
-                        <ul name='diet' id='diet'>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
-            <br />
-            <div class="submitbtn">
-                <input type = 'button'  id="submit" value= 'Get Your Recipes' onclick="sendReq()"/>
-            </div>
-            <br />
-        </form>
-        <div class="collapse" name="collapse">
-            <div class="editbtn">
-                <input type="button" id="edit" value="Edit Your Search"/>
+    <div id="prof-header-bg">
+        <section class="prof-header">
+            
+        <div id="prof-header-text-box">
+            <div id="prof-header-text">
+                <h1>Find Your Custom Recipes</h1>
+                <p>Pick your main ingredient and fill out the form to get recommened the perfect recipe based on your ingredients.</p>
             </div>
         </div>
+                
+        </section>
     </div>
-    <div id="recipes">
 
+<div class="content">
+    <form class="form" name="form" method='get' onsubmit="event.preventDefault()">
+        <table>
+            <tr id="userIngredientSection">
+              <td class="tdTitle">
+                <div class="title">
+                    <h2><label class="num">1</label>Choose Your Main Ingredient</h2>
+                </div>
+              </td>
+              <td id="listofingred"></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="title">
+                        <h2><label class="num">2</label>Choose Your Max Cooking Time (minutes) &nbsp &nbsp &nbsp</h2>
+                    </div>
+                </td>
+                <td><input type='number' min="0" max="120" name='minutes' id='minutes'/></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="title">
+                        <h2><label class="num">3</label>Choose Your Course Type</h2>
+                    </div>
+                </td>
+                <td>
+                    <select name='mealtype' id='mealtype'>
+                    <option>All</option>
+                    <option>breakfast</option>
+                    <option>lunch</option>
+                    <option>dinner</option>
+                    <option>dessert</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="title">
+                        <h2><label class="num">4</label>Choose Your Nutrition Options</h2>
+                    </div>
+                </td>
+                <td>
+                    <select name='nutrition' id='nutrition'>
+                    <option>none</option>
+                    <option>balanced</option>
+                    <option>high-fiber</option>
+                    <option>high-protein</option>
+                    <option>low-carb</option>
+                    <option>low-fat</option>
+                    <option>low-sodium</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitle">
+                    <div class="title">
+                        <h2><label class="num">5</label>Excluding the Following Allergens:</h2>
+                    </div>
+                </td>
+                <td>
+                    <ul name='allergies' id='allergies'>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitle">
+                    <div class="title">
+                        <h2><label class="num">6</label>With the Following Diets:</h2>
+                    </div>
+                </td>
+                <td>
+                    <ul name='diet' id='diet'>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <div class="submitbtn">
+            <input type = 'button'  id="submit" value= 'Get Your Recipes' onclick="sendReq()"/>
+        </div>
+        <br />
+    </form>
+    <div class="collapse" name="collapse">
+        <div class="editbtn">
+            <input type="button" id="edit" value="Edit Your Search"/>
+        </div>
     </div>
+</div>
+<div id="recipes">
+
+</div>
 <script>
 
 //populateForm();
@@ -174,214 +185,222 @@
 
 function sendReq()
 {
-    //process additional search modifiers into strings and append request URL
-    var additionalQueries = "";
+//process additional search modifiers into strings and append request URL
+var additionalQueries = "";
 
-    var mealtype = document.getElementById('mealtype').value;
-    if(mealtype != 'All')
+var mealtype = document.getElementById('mealtype').value;
+if(mealtype != 'All')
+{
+    additionalQueries = additionalQueries + "&mealType=" + mealtype;
+}
+
+var nutrition = document.getElementById('nutrition').value;
+if(nutrition != 'none')
+{
+    additionalQueries = additionalQueries + "&diet=" + nutrition;
+}
+
+var minutes = document.getElementById('minutes').value;
+if(minutes.trim() != '')
+{
+    additionalQueries = additionalQueries + "&time=" + nutrition;
+}
+
+//*****************ERIC POPULATE ARRAY HERE************************
+//assume this array is a list of allergens/excluded ingredients from database
+var allergenObjectString = "";
+var allergenObjectArray = document.querySelectorAll('#allergies li');
+for(var p = 0; p < allergenObjectArray.length; p++)
+{
+    allergenObjectString = allergenObjectArray[q].value;
+    additionalQueries = additionalQueries + "&excluded=" + allergens[p];
+}
+
+//*****************ERIC POPULATE ARRAY HERE************************
+//assume this array is a list of diet/health options from database
+var dietaryObjectString = "";
+var dietaryObjectArray = document.querySelectorAll('#diet li');
+for(var q = 0; q < dietaryObjectArray.length; q++)
+{
+    dietaryObjectString = dietaryObjectArray[q].value;
+    additionalQueries = additionalQueries + "&health=" + dietaryObjectString;
+}
+
+//process ingredients into string
+var query = "";
+var atLeastOneSelected = false;
+
+var ingredients = document.querySelectorAll('.ingredient');
+
+//create + populate array of user's ingredients
+//this currently gets the list from the form, which should be populated from
+//the database 
+var userIngredientList = [];
+
+for (var i = 0; i < ingredients.length; i++) 
+{
+    //populate user ingredient list
+    userIngredientList.push(ingredients[i].value);
+
+    if(ingredients[i].checked) 
     {
-        additionalQueries = additionalQueries + "&mealType=" + mealtype;
+        //validate + add selected ingredients to query
+        atLeastOneSelected = true;
+        query = query + " " + (ingredients[i].value);
     }
+}
 
-	var nutrition = document.getElementById('nutrition').value;
-    if(nutrition != 'none')
+if(atLeastOneSelected === false)
+{
+    alert("Please Select at Least 1 Ingredient!");
+    return false;
+}
+else
+{
+    document.getElementsByName("form")[0].style.display = "none";
+    document.getElementsByName("collapse")[0].style.display = "block";
+    var requestURL = `https://api.edamam.com/search?q=${query}&app_id=523efb53&app_key=a72279eac472b5a8e9a9ce6f904aaea4${additionalQueries}`;
+    fetch(requestURL)
+    .then(response => response.json())
+    .then(data => 
     {
-        additionalQueries = additionalQueries + "&diet=" + nutrition;
-    }
+        //store entire response
+        var jsonData = data;
+        console.log(jsonData);
 
-    var minutes = document.getElementById('minutes').value;
-    if(minutes.trim() != '')
-    {
-        additionalQueries = additionalQueries + "&time=" + nutrition;
-    }
+        //isolate recipes
+        var hits = jsonData.hits;
 
-    //*****************ERIC POPULATE ARRAY HERE************************
-    //assume this array is a list of allergens/excluded ingredients from database
-    var allergenObjectString = "";
-    var allergenObjectArray = document.querySelectorAll('#allergies li');
-    for(var p = 0; p < allergenObjectArray.length; p++)
-    {
-        allergenObjectString = allergenObjectArray[q].value;
-        additionalQueries = additionalQueries + "&excluded=" + allergens[p];
-    }
+        //get recipeSection as an object and clear it in case of a re-search
+        var recipeSection = document.getElementById("recipes");
+        recipeSection.textContent="";
 
-    //*****************ERIC POPULATE ARRAY HERE************************
-    //assume this array is a list of diet/health options from database
-    var dietaryObjectString = "";
-    var dietaryObjectArray = document.querySelectorAll('#diet li');
-    for(var q = 0; q < dietaryObjectArray.length; q++)
-    {
-        dietaryObjectString = dietaryObjectArray[q].value;
-        additionalQueries = additionalQueries + "&health=" + dietaryObjectString;
-    }
+        //create array for storing recipe divs
+        var recipesAndMatchCount = [];
 
-    //process ingredients into string
-    var query = "";
-    var atLeastOneSelected = false;
-
-    var ingredients = document.querySelectorAll('.ingredient');
-
-    //create + populate array of user's ingredients
-    //this currently gets the list from the form, which should be populated from
-    //the database 
-    var userIngredientList = [];
-
-    for (var i = 0; i < ingredients.length; i++) 
-    {
-        //populate user ingredient list
-        userIngredientList.push(ingredients[i].value);
-
-        if(ingredients[i].checked) 
+        for (var i = 1; i < hits.length + 1; i++) 
         {
-            //validate + add selected ingredients to query
-            atLeastOneSelected = true;
-            query = query + " " + (ingredients[i].value);
-        }
-    }
+            //create recipe variable
+            var currentRecipe = hits[i-1];
 
-    if(atLeastOneSelected === false)
-    {
-        alert("Please Select at Least 1 Ingredient!");
-        return false;
-    }
-    else
-    {
-        document.getElementsByName("form")[0].style.display = "none";
-        document.getElementsByName("collapse")[0].style.display = "block";
-        var requestURL = `https://api.edamam.com/search?q=${query}&app_id=523efb53&app_key=a72279eac472b5a8e9a9ce6f904aaea4${additionalQueries}`;
-        fetch(requestURL)
-        .then(response => response.json())
-        .then(data => 
-        {
-            //store entire response
-            var jsonData = data;
-            console.log(jsonData);
+            //get recipe title string
+            var recipeLabel = hits[i-1].recipe.label;
 
-            //isolate recipes
-            var hits = jsonData.hits;
+            //create header object for storing recipe name
+            var recipeLabelObject = document.createElement('h2');
+            recipeLabelObject.setAttribute("id", "recipeTitle");
+            recipeLabelObject.textContent = recipeLabel;
 
-            //get recipeSection as an object and clear it in case of a re-search
-            var recipeSection = document.getElementById("recipes");
-            recipeSection.textContent="";
 
-            //create array for storing recipe divs
-            var recipesAndMatchCount = [];
+            //create div object for storing entire recipe and add header
+            var recipeListItem = document.createElement('div');
+            recipeListItem.setAttribute("id", "recipeListItem");
+            recipeListItem.appendChild(recipeLabelObject);
 
-            for (var i = 1; i < hits.length + 1; i++) 
+            //create table for storing image on left and recipe on right
+            var imageAndItemsTable = document.createElement('table');
+            var imageAndItemsTableRow = document.createElement('tr');
+            var imageColumn = document.createElement('th');
+            imageColumn.setAttribute("id", "recipeImage");
+            var recipeColumn = document.createElement('th');
+            recipeColumn.setAttribute("id", "recipeList")
+            imageAndItemsTableRow.appendChild(imageColumn);
+            imageAndItemsTableRow.appendChild(recipeColumn);
+            imageAndItemsTable.appendChild(imageAndItemsTableRow);
+
+
+            //create list object for storing ingredients, then add to div
+            var ingredientList = document.createElement('ul');
+
+            //ingredientLines variable, array of strings
+            var ingredientLines = currentRecipe.recipe.ingredientLines;
+
+            //create p object for stating matching ingredient #
+            var matchingIngredientStatement = document.createElement('p');
+
+            //check each user ingredient to see if it matches ingredientlines
+            var matchingIngredients = 0;
+            for (var k = 0; k < userIngredientList.length; k++)
             {
-                //create recipe variable
-                var currentRecipe = hits[i-1];
-
-                //get recipe title string
-                var recipeLabel = hits[i-1].recipe.label;
-
-                //create header object for storing recipe name
-                var recipeLabelObject = document.createElement('h3');
-                recipeLabelObject.textContent = recipeLabel;
-
-
-                //create div object for storing entire recipe and add header
-                var recipeListItem = document.createElement('div');
-                recipeListItem.appendChild(recipeLabelObject);
-
-                //create table for storing image on left and recipe on right
-                var imageAndItemsTable = document.createElement('table');
-                var imageAndItemsTableRow = document.createElement('tr');
-                var imageColumn = document.createElement('th');
-                var recipeColumn = document.createElement('th');
-                imageAndItemsTableRow.appendChild(imageColumn);
-                imageAndItemsTableRow.appendChild(recipeColumn);
-                imageAndItemsTable.appendChild(imageAndItemsTableRow);
-
-
-                //create list object for storing ingredients, then add to div
-                var ingredientList = document.createElement('ul');
-
-                //ingredientLines variable, array of strings
-                var ingredientLines = currentRecipe.recipe.ingredientLines;
-
-                //create p object for stating matching ingredient #
-                var matchingIngredientStatement = document.createElement('p');
-
-                //check each user ingredient to see if it matches ingredientlines
-                var matchingIngredients = 0;
-                for (var k = 0; k < userIngredientList.length; k++)
+                var userIngredient = userIngredientList[k].toLowerCase();
+                for (var l = 0; l < ingredientLines.length; l++)
                 {
-                    var userIngredient = userIngredientList[k].toLowerCase();
-                    for (var l = 0; l < ingredientLines.length; l++)
+                    var recipeIngredient = ingredientLines[l].toLowerCase();
+                    if(recipeIngredient.indexOf(userIngredient) !== -1)
                     {
-                        var recipeIngredient = ingredientLines[l].toLowerCase();
-                        if(recipeIngredient.indexOf(userIngredient) !== -1)
-                        {
-                            matchingIngredients++;
-                            break;
-                        }
+                        matchingIngredients++;
+                        break;
                     }
                 }
-                matchingIngredientStatement.textContent = "Matching Ingredients: " + matchingIngredients;
-                recipeListItem.appendChild(matchingIngredientStatement);
-
-
-                //populate ingredientList object
-                for (var j = 0; j < ingredientLines.length; j++) 
-                {
-                    var ingredient = document.createElement('li');
-                    ingredient.textContent = ingredientLines[j];
-                    ingredientList.appendChild(ingredient);
-                }
-                recipeColumn.appendChild(ingredientList);
-
-                //create img
-                var image = document.createElement('img')
-                image.src = currentRecipe.recipe.image;
-                imageColumn.appendChild(image);
-
-                //add image+list table to div
-                recipeListItem.appendChild(imageAndItemsTable);
-
-                //add link to end
-                //create link object
-                var link = `${currentRecipe.recipe.url}`;
-                console.log(currentRecipe.recipe.url);
-                //fix link if http
-                if(link.includes("http://"))
-                {
-                    link = link.split("http://");
-                    console.log(link[1]);
-                    link = "https://" + link[1];
-                }
-                var recipeLink = document.createElement('a');
-                recipeLink.href = link;
-                recipeLink.textContent = `Go to recipe`;
-                recipeLink.target='blank';
-                recipeListItem.appendChild(recipeLink);
-
-                
-
-                //store crafted recipe div in array with ingredient match count
-                recipesAndMatchCount.push(
-                {
-                    recipe: recipeListItem,
-                    matchCount: matchingIngredients
-                });
             }
+            matchingIngredientStatement.textContent = "Matching Ingredients: " + matchingIngredients;
+            recipeListItem.appendChild(matchingIngredientStatement);
 
-            //sort array of recipe divs by ingredient match count
-            recipesAndMatchCount.sort(function(a, b)
-            {
-                return b.matchCount - a.matchCount;
-            });
 
-            //add all recipes to page
-            for (var m = 0; m < recipesAndMatchCount.length; m++)
+            //populate ingredientList object
+            for (var j = 0; j < ingredientLines.length; j++) 
             {
-                recipeSection.appendChild(recipesAndMatchCount[m].recipe);
+                var ingredient = document.createElement('li');
+                ingredient.textContent = ingredientLines[j];
+                ingredientList.appendChild(ingredient);
             }
+            recipeColumn.appendChild(ingredientList);
+
+            //create img
+            var image = document.createElement('img')
+            image.src = currentRecipe.recipe.image;
+            imageColumn.appendChild(image);
+
+            //add image+list table to div
+            recipeListItem.appendChild(imageAndItemsTable);
+
+            //add link to end
+            //create link object
+            var link = `${currentRecipe.recipe.url}`;
+            console.log(currentRecipe.recipe.url);
+            //fix link if http
+            if(link.includes("http://"))
+            {
+                link = link.split("http://");
+                console.log(link[1]);
+                link = "https://" + link[1];
+            }
+            var recipeLink = document.createElement('a');
+            var linkDiv = document.createElement('div');
+            linkDiv.setAttribute("id", "linkDiv");
+            recipeLink.setAttribute("id", "recipeLink");
+            recipeLink.href = link;
+            recipeLink.textContent = `Go to Recipe`;
+            recipeLink.target='blank';
+            linkDiv.appendChild(recipeLink);
+            recipeListItem.appendChild(linkDiv);
 
             
-        })  
-        .catch(error => console.error(error));
-    }
+
+            //store crafted recipe div in array with ingredient match count
+            recipesAndMatchCount.push(
+            {
+                recipe: recipeListItem,
+                matchCount: matchingIngredients
+            });
+        }
+
+        //sort array of recipe divs by ingredient match count
+        recipesAndMatchCount.sort(function(a, b)
+        {
+            return b.matchCount - a.matchCount;
+        });
+
+        //add all recipes to page
+        for (var m = 0; m < recipesAndMatchCount.length; m++)
+        {
+            recipeSection.appendChild(recipesAndMatchCount[m].recipe);
+        }
+
+        
+    })  
+    .catch(error => console.error(error));
+}
 }
 </script>
 
