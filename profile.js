@@ -265,7 +265,7 @@ router.get("/",(req,res,next)=>{
 
                         var membership = getmembership(sessionuser).catch(console.error);
                         membership.then(w => {
-                            console.log(w);
+                            // console.log(w);
                             if (w == "false") {
                                 $(".membership").html("MyMeals Basic Plan");
                             } else {
