@@ -200,7 +200,7 @@ html, body {
 }
 
 #prof-header-bg {
-    background-color: #f9d149;
+    background-color: #f9d00f;
     height: 300px;
     display: flex;
     justify-content: center;
@@ -276,8 +276,35 @@ p {
     @media (max-width: 720px) { #recipeList { width: 270px} #recipeImage {width: 270} #recImg {width: 270}}
     @media (max-width: 720px) { h2 { font-size: 15} }
 
-    @media (max-width: 620px) { .form {width: 460px} .collapse {width: 460px} }
-    @media (max-width: 620px) { #recipes {width: 460px} #recipeListItem {width: 460px} }
+    @media(max-width: 690px) {
+        .prof-header {
+            width: 100%;
+            filter: none;
+            border-radius: 0px;
+        }
+        .form {
+            width: 100%;
+            border-radius: 0px;
+        }
+        .collapse {
+            width: 100%;
+            border-radius: 0px;
+        }
+        #recipes {
+            width: 100%;
+            border-radius: 0px
+        }
+        #recipeListItem {
+            width: 100%;
+            border-radius: 0px;
+        }
+        #prof-header-bg {
+            height: 200px;
+            margin-bottom: 200px
+        }
+
+    }
+
     @media (max-width: 620px) { #recipeList { width: 210px} #recipeTitle {font-size: 18px} #recipeList {font-size: 12px} #recipeImage {width: 210} #recImg {width: 210}}
     @media (max-width: 620px) { .title {font-size: 10px} #listofingred, #allergies, #diet {font-size: 8px} .num {width: 20px; height: 20px; font-size: 12px; line-height: 20px} }
     @media (max-width: 620px) { #mealtype {width: 40px; font-size: 8px} #nutrition {width: 40px; font-size: 8px} input[type="number"] {width: 40px; font-size: 8px}}
@@ -285,8 +312,6 @@ p {
     @media (max-width: 620px) { #submit {width: 175px; font-size: 15} #edit {width: 175px; font-size: 15} .editbtn {width: 175px; } .submitbtn {width: 175px} }
 
 
-    @media (max-width: 490px) { .form {width: 350px} .collapse {width: 350px} }
-    @media (max-width: 490px) { #recipes {width: 350px} #recipeListItem {width: 350px} }
     @media (max-width: 490px) { #recipeList { width: 155px} #recipeTitle {font-size: 14px} #recipeList {font-size: 10px} #recipeImage {width: 155} #recImg {width: 155}}
     @media (max-width: 490px) { .title {font-size: 6px} #listofingred, #allergies, #diet {font-size: 4px} .num {width: 10px; height: 10px; font-size: 8px; line-height: 10px} }
     @media (max-width: 490px) { #mealtype {width: 30px; font-size: 6px} #nutrition {width: 30px; font-size: 6px} input[type="number"] {width: 30px; font-size: 6px}}
