@@ -347,7 +347,8 @@ else
             recipeColumn.appendChild(ingredientList);
 
             //create img
-            var image = document.createElement('img')
+            var image = document.createElement('img');
+            image.setAttribute("id", "recImg");
             image.src = currentRecipe.recipe.image;
             imageColumn.appendChild(image);
 
