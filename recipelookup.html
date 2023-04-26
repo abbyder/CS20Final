@@ -214,11 +214,12 @@ console.log(allergenObjectArray);
 
 var allergenList = allergenObjectArray.children;
 console.log(allergenList);
+
 for(var p = 0; p < allergenList.length; p++)
 {
-    allergenObjectString = allergenList[p].textContent;
+    allergenObjectString = allergenList[p].textContent.toLowerCase() + "-free";
     console.log("string1: "+allergenObjectString);
-    additionalQueries = additionalQueries + "&excluded=" + allergenObjectString;
+    additionalQueries = additionalQueries + "&health=" + allergenObjectString;
 }
 
 //*****************ERIC POPULATE ARRAY HERE************************
