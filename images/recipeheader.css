@@ -40,3 +40,5 @@ body {
 .headerlink:hover {
     text-shadow: 0px 0px 0px #ffffff, 0 0 25px #ffffff, 0 0 5px #fff;
 }
+
+@media (max-width: 340px) {.logo {height: 50px} .userPage {height: 30px}}
