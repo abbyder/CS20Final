@@ -272,7 +272,9 @@ router.get("/",(req,res,next)=>{
                                 $(".membership").html("MyMeals Premium Plan");
                                 $("#upgrade-form").html("");
                                 $(".upgrade-msg").html("You are a premium member!");
-                                $(".instructions").html("");
+                                $(".mem-instructions").html("You can access unlimited \
+                                ingredients when you search for recipes.");
+                                $(".upgrade-mem").css("margin", "0px");
                             }
                             res.send($.html());
                         })
