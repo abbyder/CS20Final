@@ -134,7 +134,7 @@ html, body {
         line-height: 27px;
     }
     #diet, #allergies {
-        text-align: right;
+        text-align: left;
     }
     #recipeTitle {
         text-align: center;
