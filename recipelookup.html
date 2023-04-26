@@ -208,13 +208,15 @@ if(minutes.trim() != '')
 
 //*****************ERIC POPULATE ARRAY HERE************************
 //assume this array is a list of allergens/excluded ingredients from database
-// var allergenObjectString = "";
-// var allergenObjectArray = document.querySelectorAll('#allergies li');
-// for(var p = 0; p < allergenObjectArray.length; p++)
-// {
-//     allergenObjectString = allergenObjectArray[q].textContent;
-//     additionalQueries = additionalQueries + "&excluded=" + allergens[p];
-// }
+var allergenObjectString = "";
+var allergenObjectArray = document.getElementById('allergies');
+
+var allergenList = allergenObjectArray.children;
+for(var p = 0; p < allergenList.length; p++)
+{
+    allergenObjectString = allergenList[q].textContent;
+    additionalQueries = additionalQueries + "&excluded=" + allergens[p];
+}
 
 //*****************ERIC POPULATE ARRAY HERE************************
 //assume this array is a list of diet/health options from database
@@ -225,7 +227,7 @@ var dietList = dietaryObjectArray.children;
 console.log(dietList);
 for(var q = 0; q < dietList.length; q++)
 {
-    dietaryObjectString = dietList[q].textContent;
+    dietaryObjectString = dietList[q].textContent.toLowerCase();
     console.log("string: "+dietaryObjectString);
     additionalQueries = additionalQueries + "&health=" + dietaryObjectString;
 }
