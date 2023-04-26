@@ -225,8 +225,8 @@ var dietList = dietaryObjectArray.children;
 console.log(dietList);
 for(var q = 0; q < dietList.length; q++)
 {
-    dietaryObjectString = dietList[q].value;
-    console.log(dietaryObjectString);
+    dietaryObjectString = dietList[q].textContent;
+    console.log("string: "+dietaryObjectString);
     additionalQueries = additionalQueries + "&health=" + dietaryObjectString;
 }
 
