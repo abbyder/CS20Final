@@ -390,6 +390,12 @@
             #upgrade-info {
                 width: 530px;
             }
+            #upgrade-form-container {
+                margin-left: 40px;
+            }
+            #upgrade-submit {
+                margin-left: -40px;
+            }
         }
 
         @media(max-width: 690px) {
@@ -415,9 +421,16 @@
             }
             .upgrade-box {
                 margin-top: -55px;
+                margin-bottom: -50px;
             }
             h1 {
                 width: 400px;
+            }
+            #upgrade-form-container {
+                margin-left: 30px;
+            }
+            #upgrade-submit {
+                margin-left: -30px;
             }
         }
 
@@ -443,6 +456,67 @@
             .food-box {
                 width: 150px;
                 padding: 5px;
+            }
+        }
+
+        @media(max-width: 500px) {
+            #upgrade-info {
+                width: 80%;
+            }
+            h1 {
+                width: 300px;
+            }
+            h2 {
+                width: 80%;
+            }
+            .userInfo {
+                width: 80%;
+            }
+            #upgrade-form-container {
+                margin-left: 60px;
+                width: 400px;
+            }
+            #prof-ingred-display {
+                width: 90%;
+            }
+            #allergies-content, #diet-content {
+                width: 100%;
+                /* margin-left: auto; */
+                /* margin-right: auto; */
+            }
+            .food-pref {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            .food-box {
+                width: 180px;
+                padding: 5px;
+            }
+        }
+
+        @media(max-width: 470px) {
+            #upgrade-form-container {
+                width: 200px;
+            }
+            input[name="card"], input[name="cvv"], #exp-date, input[name="zip"] {
+                float: left;
+                clear: left;
+            }
+            #upgrade-submit {
+                margin-left: -120px;
+            }
+            /* .upg {
+                float: none;
+                clear: none; 
+            } */
+        }
+
+        @media(max-width: 345px) {
+            #prof-ingred-input {
+                width: 200px;
+            }
+            h1 {
+                width: 200px;
             }
         }
 
