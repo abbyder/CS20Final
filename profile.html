@@ -59,7 +59,7 @@
         }
 
         #prof-header-img img {
-            width: 110px;
+            width: 90px;
             padding: 15px;
             border-radius: 100%;
             border: 15px solid white;
@@ -114,7 +114,6 @@
 
         #prof-ingred {
             margin: 20px;  
-            /* background-color: black;      TODO get rid of?? */
             align-items: center; 
         }
 
@@ -152,7 +151,7 @@
             font-size: 16px;
             padding: 10px 20px;
             border-radius: 20px;
-            background-color: white; /* TODO change */
+            background-color: white;
             width: fit-content;
             height: fit-content;
             margin: 10px;
@@ -475,8 +474,6 @@
             }
             #allergies-content, #diet-content {
                 width: 100%;
-                /* margin-left: auto; */
-                /* margin-right: auto; */
             }
             .food-pref {
                 margin-left: 10px;
@@ -499,10 +496,6 @@
             #upgrade-submit {
                 margin-left: -120px;
             }
-            /* .upg {
-                float: none;
-                clear: none; 
-            } */
         }
 
         @media(max-width: 345px) {
@@ -513,7 +506,6 @@
                 width: 200px;
             }
         }
-
 
     </style>
 
@@ -552,10 +544,6 @@
         <div id="prof-header-text">
             <h1 class="usn"></h1>
             <div id="mem-type"><p class="membership"></p></div>
-            <!-- TODO consider????? -->
-            <!-- <p id="prof-description">
-            Add ingredients and customize your MyMeals profile.
-            </p> -->
         </div>
         </div>
     
@@ -732,36 +720,6 @@
 
     </script>
 
-    <!-- process food preferences -->
-    <script>
-        const allergyBoxes = document.getElementsByClassName("allergy");
-        const dietBoxes = document.getElementsByClassName("diets");
-
-        for (let i = 0; i < allergyBoxes.length; i++ ) {
-            allergyBoxes[i].addEventListener("change", updateFoodPref);
-        }
-
-        for (let i = 0; i < dietBoxes.length; i++ ) {
-            dietBoxes[i].addEventListener("change", updateFoodPref);
-        }
-
-        function updateFoodPref() {
-            let allergyChecked = [];
-            let dietChecked = [];
-
-            for (let i = 0; i < allergyBoxes.length; i++ ) {
-                if (allergyBoxes[i].checked) {
-                    allergyChecked.push(allergyBoxes[i].value + "-Free");
-                }
-            }
-            for (let i = 0; i < dietBoxes.length; i++ ) {
-                if (dietBoxes[i].checked) {
-                    dietChecked.push(dietBoxes[i].value);
-                }
-            }
-        }
-    </script>
-
     <!-- validate credit card info -->
     <script>
         const memHeaderDisplay = document.getElementById("mem-type");
@@ -814,13 +772,7 @@
             
             console.log(memHeaderDisplay)
             if (validInfo && valCard && valCVV && valZip) {
-                // memHeaderDisplay.innerHTML = "<p>MyMeals Premium Plan</p>";
-                
-                // TODO need to also check if premium plan has already been purchased
-                // if so do an error --- if not, set some bool on user profile to
-                // indicate the purchase
                 hiddenStatus.innerHTML += "<input type='hidden' name='memStatus' value='true' />"
-                
                 return true;
             }
             return false;
