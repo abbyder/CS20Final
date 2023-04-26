@@ -210,8 +210,10 @@ if(minutes.trim() != '')
 //assume this array is a list of allergens/excluded ingredients from database
 var allergenObjectString = "";
 var allergenObjectArray = document.getElementById('allergies');
+console.log(allergenObjectArray);
 
 var allergenList = allergenObjectArray.children;
+console.log(allergenList);
 for(var p = 0; p < allergenList.length; p++)
 {
     allergenObjectString = allergenList[p].textContent;
