@@ -131,7 +131,10 @@ html, body {
     #listofingred, #allergies, #diet {
         color: rgb(0, 0, 0);
         font-size: 18px;
-        line-height: 27px
+        line-height: 27px;
+    }
+    #diet, #allergies {
+        text-align: right;
     }
     #recipeTitle {
         text-align: center;
