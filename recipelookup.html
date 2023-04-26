@@ -214,7 +214,8 @@ var allergenObjectArray = document.getElementById('allergies');
 var allergenList = allergenObjectArray.children;
 for(var p = 0; p < allergenList.length; p++)
 {
-    allergenObjectString = allergenList[q].textContent;
+    allergenObjectString = allergenList[p].textContent;
+    console.log("string1: "+allergenObjectString);
     additionalQueries = additionalQueries + "&excluded=" + allergens[p];
 }
 
