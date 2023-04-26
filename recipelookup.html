@@ -212,7 +212,7 @@ var allergenObjectString = "";
 var allergenObjectArray = document.querySelectorAll('#allergies li');
 for(var p = 0; p < allergenObjectArray.length; p++)
 {
-    allergenObjectString = allergenObjectArray[q].value;
+    allergenObjectString = allergenObjectArray[q].textContent;
     additionalQueries = additionalQueries + "&excluded=" + allergens[p];
 }
 
@@ -222,7 +222,7 @@ var dietaryObjectString = "";
 var dietaryObjectArray = document.querySelectorAll('#diet li');
 for(var q = 0; q < dietaryObjectArray.length; q++)
 {
-    dietaryObjectString = dietaryObjectArray[q].value;
+    dietaryObjectString = dietaryObjectArray[q].textContent;
     additionalQueries = additionalQueries + "&health=" + dietaryObjectString;
 }
 
