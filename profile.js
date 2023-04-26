@@ -230,8 +230,8 @@ router.get("/",(req,res,next)=>{
                 var allergies = getallergies(sessionuser).catch(console.error);
                 allergies.then(y => {
                         let allergies = [
-                            "Peanuts", "Tree-Nut", "Dairy", "Eggs", "Gluten", "Fish", 
-                            "Crustcean", "Shellfish", "Soy", "Sesame"   
+                            "Peanut", "Tree-Nut", "Dairy", "Egg", "Gluten", "Fish", 
+                            "Crustacean", "Shellfish", "Soy", "Sesame"   
                         ];
 
                         allergyhtml = "";
@@ -249,7 +249,7 @@ router.get("/",(req,res,next)=>{
                     diet.then(z => {
                         let dietType = [
                             "Vegetarian", "Vegan", "Pescatarian", "Pork-Free", "Kosher", "Alcohol-Free",
-                            "Red-Meat-Free", "Low Sugar", "Paleo", "Keto", 
+                            "Red-Meat-Free", "Low-Sugar", "Paleo", "Keto-Friendly", 
                         ];
 
                         diethtml = ""
