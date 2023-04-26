@@ -296,18 +296,18 @@ router.post('/', function(request, response, next){
         if (request.body['formtype'] == "ingredients"){
             var ret = updateingred(sessionuser, request.body).catch(console.error);
             ret.then(x => { 
-                response.redirect("/profile");
+                response.redirect("/profile#ingred-box2");
             });
         } else if (request.body['formtype'] == "preferences"){
             // console.log(request.body);
             var ret = updatepref(sessionuser, request.body).catch(console.error);
             ret.then(x => { 
-                response.redirect("/profile");
+                response.redirect("/profile#pref-box2");
             });
         } else {
             var ret = updatemember(sessionuser).catch(console.error);
             ret.then(x => { 
-                response.redirect("/profile");
+                response.redirect("/profile#upgrade-box2");
             });
         }
         //reroute
