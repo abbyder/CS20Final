@@ -408,6 +408,16 @@ else
             recipeSection.appendChild(recipesAndMatchCount[m].recipe);
         }
 
+        if(hits.length===0)
+        {
+            var noRecipeMessage = document.createElement('h1');
+            noRecipeMessage.textContent = "No Recipes Found";
+            var noRecipeMessage2 = document.createElement('p');
+            noRecipeMessage2.textContent = "Please check that ingredients are spelled correctly";
+            recipeSection.appendChild(noRecipeMessage);
+            recipeSection.appendChild(noRecipeMessage2);
+        }
+
         
     })  
     .catch(error => console.error(error));
