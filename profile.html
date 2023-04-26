@@ -3,7 +3,7 @@
 <head>
     <title>Profile | MyMeals</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <link rel = "stylesheet" type = "text/css" href = "profheader.css">
     <style type="text/css">
@@ -11,9 +11,9 @@
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
 
-        .content {
+        /* .content {
             margin: 0px 50px;
-        }
+        } */
 
         /* h1 {
             font-size: 35px;
@@ -360,8 +360,91 @@
             line-height: 24px;
         }
 
-
         /* responsiveness */
+        @media(max-width: 940px) {
+            .ingred-box, .pref-box, .upgrade-box {
+                width: 630px;
+            }
+            #prof-ingred-display {
+                width: 580px;
+            }
+            p.instructions, p.mem-instructions {
+                width: 550px;
+            }
+            .food-pref {
+                margin: 20px 100px;
+                display: block;
+            }
+            #allergies-content, #diet-content {
+                margin-left: 25px;
+                width: fit-content;
+            }
+            h2 {
+                width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            h3 {
+                padding-top: 20px;
+            }
+            #upgrade-info {
+                width: 530px;
+            }
+        }
+
+        @media(max-width: 690px) {
+            .prof-header {
+                width: 100%;
+                filter: none;
+                border-radius: 0px;
+            }
+            #prof-header-bg {
+                width: 100%;
+            }
+            .ingred-box, .pref-box, .upgrade-box {
+                width: 100%;
+                border-radius: 0px;
+                margin-top: -55px;
+                filter: none;
+            }
+            .ingred-box {
+                margin-top: -35px;
+            }
+            .pref-box {
+                margin-top: -75px;
+            }
+            .upgrade-box {
+                margin-top: -55px;
+            }
+            h1 {
+                width: 400px;
+            }
+        }
+
+        @media(max-width: 590px) {
+            p.instructions, p.mem-instructions {
+                width: 70%;
+            }
+            #prof-ingred-display {
+                width: 530px;
+            }
+            #upgrade-info {
+                width: 460px;
+            }
+        }
+
+        @media(max-width: 560px) {
+            #allergies-content, #diet-content {
+                width: 320px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .food-box {
+                width: 150px;
+                padding: 5px;
+            }
+        }
 
 
     </style>
