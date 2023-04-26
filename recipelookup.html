@@ -222,10 +222,10 @@ var dietaryObjectString = "";
 var dietaryObjectArray = document.getElementById('diet');
 
 var dietList = dietaryObjectArray.children;
-
+console.log(dietList);
 for(var q = 0; q < dietList.length; q++)
 {
-    dietaryObjectString = dietaryObjectArray[q].textContent;
+    dietaryObjectString = dietList[q].value;
     additionalQueries = additionalQueries + "&health=" + dietaryObjectString;
 }
 
