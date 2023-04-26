@@ -55,7 +55,7 @@
             justify-content: center;
             position: relative;
             z-index: 3;
-            top: -90px;
+            top: -80px;
         }
 
         #prof-header-img img {
@@ -284,7 +284,9 @@
             justify-content: center;
             clear: left;
             float: left;
-            margin: 10px 75px 0px 75px;
+            margin-right: 0px;
+            margin-left: 0px;
+            width: 100%;
         }
         
         #ingred-submit:hover, #pref-submit:hover, #upgrade-submit:hover, #logout-submit:hover {
@@ -443,6 +445,9 @@
             #upgrade-submit {
                 margin-left: -30px;
             }
+            .prof-header {
+                padding-bottom: 40px;
+            }
         }
 
         @media(max-width: 590px) {
@@ -513,6 +518,16 @@
             }
             #upgrade-submit {
                 margin-left: -120px;
+            }
+        }
+
+        @media(max-width: 380px) {
+            #prof-header-text-box {
+                height: fit-content;
+                padding-bottom: 30px;
+            }
+            h1 {
+                margin: 0px;
             }
         }
 
