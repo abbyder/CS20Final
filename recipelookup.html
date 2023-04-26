@@ -414,8 +414,11 @@ else
             noRecipeMessage.textContent = "No Recipes Found";
             var noRecipeMessage2 = document.createElement('p');
             noRecipeMessage2.textContent = "Please check that ingredients are spelled correctly";
+            var noRecipeMessage3 = document.createElement('div')
+            noRecipeMessage3.style.height = "400px";
             recipeSection.appendChild(noRecipeMessage);
             recipeSection.appendChild(noRecipeMessage2);
+            recipeSection.appendChild(noRecipeMessage3);
         }
 
         
