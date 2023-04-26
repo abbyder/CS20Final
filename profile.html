@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Profile | MyMeals</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <link rel = "stylesheet" type = "text/css" href = "profheader.css">
@@ -59,9 +58,11 @@
         }
 
         #prof-header-img img {
-            width: 140px;
+            width: 110px;
+            padding: 15px;
             border-radius: 100%;
             border: 15px solid white;
+            background-color: coral;
         }
 
         #prof-header-text-box {
@@ -533,7 +534,7 @@
 
     <div class="header">
         <ul class="nav">
-            <li id="header"><img src="navlogo.png" height="70px" class="logo"></li>
+            <li id="header"><a href="https://mymeals.herokuapp.com/profile"><img src="navlogo.png" height="70px" class="logo"></a></li>
             <li id="header" class="right"><a  class="headerlink" href="https://mymeals.herokuapp.com/recipelookup">&nbsp; <img src="recipes.png" height="50px" class="recipePage"><text class="headertext">RECIPES</text></a></li>
         </ul>
     </div>
@@ -543,7 +544,7 @@
     <section class="prof-header">
     
         <div id="prof-header-img">
-            <img src="logo.png" alt="profile image">
+            <img src="profile-no-circle.png" alt="profile image">
         </div>
 
         <div id="prof-header-text-box">
@@ -769,12 +770,14 @@
         const zipCode = document.getElementsByName("zip")[0];
         const expMonth = document.getElementsByName("exp-month")[0];
         const expYear = document.getElementsByName("exp-year")[0];
-        // const submitBtn = document.getElementById("upgrade-submit");
 
-        cardNum.required = true;
-        cvv.required = true;
-        zipCode.required = true;
-
+        // check that form items exist (if user has premium plan then it isn't there)
+        if (cardNum != null) {
+            cardNum.required = true;
+            cvv.required = true;
+            zipCode.required = true;
+        }
+        
         function validateMem() {
             // check that any info was inputted
             let validInfo = cardNum.checkValidity() && cvv.checkValidity() 
