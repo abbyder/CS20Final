@@ -588,7 +588,7 @@
     <div class="ingred-box">
     <h2>My Ingredients</h2>
     <p class="instructions">
-        Type and enter your ingredients to add them to your profile!
+        Type then hit enter for each of your ingredients to add them to your profile!
         <br />Click save when you're finished.
     </p>
     
@@ -716,7 +716,12 @@
         // add ingredient to user info database
         ingredInput.addEventListener("keydown", function onEvent(e) {
             if (e.key === "Enter" && ingredInput.value != "") {
-                userIngred.push(ingredInput.value.toLowerCase());
+                // limit length of input
+                if (ingredInput.value.length > 30) {
+                    userIngred.push(ingredInput.value.substring(0, 30).toLowerCase());
+                } else {
+                    userIngred.push(ingredInput.value.toLowerCase());
+                }
                 updateIngredDisplay();
                 ingredInput.value = "";
             }
@@ -751,6 +756,37 @@
         }
 
     </script>
+
+    <!-- process food preferences -->
+    <script>
+        const allergyBoxes = document.getElementsByClassName("allergy");
+        const dietBoxes = document.getElementsByClassName("diets");
+
+        for (let i = 0; i < allergyBoxes.length; i++ ) {
+            allergyBoxes[i].addEventListener("change", updateFoodPref);
+        }
+
+        for (let i = 0; i < dietBoxes.length; i++ ) {
+            dietBoxes[i].addEventListener("change", updateFoodPref);
+        }
+
+        function updateFoodPref() {
+            let allergyChecked = [];
+            let dietChecked = [];
+
+            for (let i = 0; i < allergyBoxes.length; i++ ) {
+                if (allergyBoxes[i].checked) {
+                    allergyChecked.push(allergyBoxes[i].value + "-Free");
+                }
+            }
+            for (let i = 0; i < dietBoxes.length; i++ ) {
+                if (dietBoxes[i].checked) {
+                    dietChecked.push(dietBoxes[i].value);
+                }
+            }
+        }
+    </script>
+
 
     <!-- validate credit card info -->
     <script>
