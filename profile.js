@@ -304,15 +304,15 @@ router.post('/', function(request, response, next){
             ret.then(x => { 
                 response.redirect("/profile#pref-box2");
             });
-        } else {
+        } else if (request.body['formtype'] == "membership") {
             var ret = updatemember(sessionuser).catch(console.error);
             ret.then(x => { 
                 response.redirect("/profile#upgrade-box2");
             });
+        } else {
+            request.session.destroy();
+            response.redirect("/");
         }
-        //reroute
-        // response.send(request.body);
-        // response.redirect("/profile");
     }
 });
 

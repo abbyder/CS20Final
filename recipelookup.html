@@ -2,9 +2,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Recipe Form</title>
+<title>Recipes | MyMeals</title>
 <link rel = "stylesheet" type = "text/css" href = "recipeheader.css">
 <link rel = "stylesheet" type = "text/css" href = "recipestylesheet.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="topicon.png">
 </head>
 
 <script>
@@ -69,7 +71,7 @@
 <body>
     <div class="header">
         <ul class="nav">
-            <li id="header"><img src="navlogo.png" height="70px" class="logo"></li>
+            <li id="header"><a  class="headerlink" href="https://mymeals.herokuapp.com/profile"><img src="navlogo.png" height="70px" class="logo"></a></li>
             <li id="header" class="right"><a  class="headerlink" href="https://mymeals.herokuapp.com/profile">&nbsp; &nbsp;<img src="profile.png" height="50px" class="userPage"><text class="headertext">PROFILE</text></a></li>
         </ul>
     </div>
@@ -80,7 +82,7 @@
         <div id="prof-header-text-box">
             <div id="prof-header-text">
                 <h1>Find Your Custom Recipes</h1>
-                <p>Pick your main ingredient and fill out the form to get recommened the perfect recipe based on your ingredients.</p>
+                <p>Pick your main ingredient and fill out the form to get recommended the perfect recipe based on your ingredients.</p>
             </div>
         </div>
                 
@@ -203,7 +205,7 @@ if(nutrition != 'none')
 var minutes = document.getElementById('minutes').value;
 if(minutes.trim() != '')
 {
-    additionalQueries = additionalQueries + "&time=" + nutrition;
+    additionalQueries = additionalQueries + "&time=" + minutes;
 }
 
 //*****************ERIC POPULATE ARRAY HERE************************
@@ -411,7 +413,7 @@ else
             var noRecipeMessage = document.createElement('h1');
             noRecipeMessage.textContent = "No Recipes Found";
             var noRecipeMessage2 = document.createElement('p');
-            noRecipeMessage2.textContent = "Please check that ingredients are spelled correctly";
+            noRecipeMessage2.textContent = "Hint: check that ingredients are spelled correctly or broaden your search";
             var noRecipeMessage3 = document.createElement('div')
             noRecipeMessage3.style.height = "220px";
             recipeSection.appendChild(noRecipeMessage);
